@@ -1,0 +1,43 @@
+.nav {
+    display: none;
+
+    margin-top: .6rem;
+
+    transition: all .5s;
+    text-align: right;
+    background-color: green;
+
+    @include breakpoint(1004 up) {
+        display: block;
+        background-color: red;
+
+        transition: all .5s;
+    }
+
+    &__item {
+        display: inline-block;
+
+        margin: 0;
+        padding: 0;
+
+        list-style: none;
+    }
+
+    &__link {
+        margin-left: 1rem;
+
+        transition: color .1s;
+        text-transform: uppercase;
+
+        color: $white;
+
+        &:hover {
+            transition: color .4s;
+        }
+
+        &.active {
+            color: darken($white, 30%);
+            border-bottom: 1px solid darken($white, 30%);
+        }
+    }
+}

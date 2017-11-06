@@ -1,0 +1,58 @@
+.footer{
+	background-color: $secondary-color;
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+	text-align: center;
+	color: $white;
+
+}
+.header, .hero{
+	// display: none;
+
+}
+.footer-nav{
+	border-bottom:1px solid #3c3c3c;
+	text-align: center;
+	padding-bottom: 1rem;
+}
+
+.footer-nav__link{
+	text-transform: uppercase;
+	color:$white;
+	margin: 0 1rem;
+	transition: color 0.1s;
+	display: inline-block;
+	&:hover{
+		transition: color 0.4s;
+	}
+	&.active{
+		color: darken($white, 10%);
+		border-bottom:1px solid darken($white, 10%);
+	}
+
+}
+
+.footer__social{
+	margin-top: 2rem;
+}
+
+
+.footer__logo{
+	margin-top: 3rem;
+	margin-bottom: 3rem;
+	text-align: center;
+	.logo{
+		width: 180px;
+		min-width:180px;
+
+	}
+	.logo__image{
+		float: left;
+	}
+}
+
+.footer__copyright{
+	@include grid-column(10);
+	@include grid-column-position(center);
+
+}

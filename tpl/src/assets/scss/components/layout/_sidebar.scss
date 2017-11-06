@@ -1,0 +1,161 @@
+.sidebar{
+
+}
+.sidebar__header {
+	text-transform: uppercase;
+	border-bottom:2px solid rgba($primary-color, 0.2);
+
+}
+
+//************************************
+.sidebar-nav {
+	margin-bottom: 2rem;
+}
+
+//************************************
+.sidebar-nav__link{
+	display: block;
+	border-bottom:2px solid rgba($light-gray, 0.8);
+	color:$dark-gray;
+	padding:1rem 0;
+}
+
+//************************************
+.sidebar-social {
+	margin-bottom: 2rem;
+	.social__link{
+
+	}
+	.social__icon{
+		margin: 0.2rem;
+		width: 37px;
+		height: 37px;
+		text-align: center;
+		border-radius:50%;
+		color:$white;
+		background-color: $primary-color;
+		transition: all 0.5s ease;
+
+		&:before{
+			margin-top: 6px;
+			font-size: 1.5rem;
+
+		}
+		&:hover{
+			transition: all 0.5s ease;
+			color:$secondary-color;
+			background-color: rgba($primary-color, 0.5);
+		}
+	}
+}
+
+//************************************
+.sidebar-afisha {
+	margin-bottom: 2rem;
+	position: relative;
+}
+
+.sidebar-afisha__switch {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+
+	.switch{
+		display: inline-block;
+		border:2px solid $primary-color;
+		width: 49%;
+		text-align: center;
+		color:$black;
+		box-sizing: border-box;
+		padding: 0.5rem 0;
+		user-select: none;
+
+
+		&.is-active{
+				background-color: $primary-color;
+				color:$white;
+				cursor: text;
+		}
+		&:hover:not(.is-active){
+			background: $black;
+			border-color:$black;
+			color: $white;
+			transition: all 0.5s ease;
+		}
+
+		&.future {
+			margin-right: -4px;
+			margin-left: 4px;
+			border-radius:3px 0 0 3px;
+		}
+
+		&.past {
+			border-radius:0 3px 3px 0;
+		}
+	}
+
+}
+
+
+
+.sidebar-afisha-container{
+	position: relative;
+	display: none;
+
+	&.future{}
+	&.past{}
+
+	&.is-active{
+		display: block;
+	}
+}
+
+.sidebar-afisha__item {
+
+	display: block;
+	margin-bottom: 1rem;
+	border-bottom:1px solid $light-gray;
+	color:$black;
+	&:hover,&:active,&:focus{
+		color:$black;
+
+	}
+
+}
+.sidebar-afisha__image {
+	float: left;
+	margin-right: 1rem;
+	margin-bottom: 1rem;
+}
+
+.sidebar-afisha__text {
+}
+.sidebar-afisha__link {
+	display: inline-block;
+	text-decoration: underline;
+	&:hover{
+		text-decoration: none;
+	}
+}
+
+
+//************************************
+.sidebar-banner {
+	margin-bottom: 2rem;
+
+}
+
+.sidebar-banner__item{
+	margin-bottom: 1rem;
+	margin-top: 1rem;
+	display: block;
+}
+//************************************
+.sidebar-form {}
+.form-error-message {
+	color:$alert-color;
+}
+.sidebar-form-input {}
+.more {
+	display: inline-block;
+	margin: 1rem auto;
+}

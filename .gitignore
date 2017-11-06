@@ -1,0 +1,20 @@
+
+# remove comment for DEV project
+#---------------------
+#manager/includes/config.inc.php
+#_misc
+#sftp-config.json
+#---------------------
+
+# except do not ignore .gitignore
+!.gitignore
+
+#evo
+assets/cache/
+assets/backup/
+assets/.thumbs/
+assets/.sgThumbs/
+assets/galleries/
+assets/images/
+
+

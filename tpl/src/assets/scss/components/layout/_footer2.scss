@@ -1,0 +1,7 @@
+.footer{
+	background-color:$dark-gray;
+	@include xy-grid-container;
+	&__wrapper{
+		@include xy-grid;
+	}
+}

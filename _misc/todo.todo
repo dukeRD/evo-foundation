@@ -1,0 +1,17 @@
+ Evolution CMS 1.4RC
+   https://github.com/evolution-cms/evolution
+
+ Zurb foundation, zurb template 6.4.3
+   src  https://github.com/zurb/foundation-zurb-template
+   docs https://foundation.zurb.com/sites/docs/
+
+
+ ☐ сделать удаление ненужных сниппетов из Эво
+ ☐ базовые чанки для шаблона
+     ☐ метатеги
+     ☐ форма аяка + модальное окно
+     ☐ каталог с пагинацией (конфиг для DocLister)
+ ☐ установочная версия - 404, сайтмэп
+ ☐ Foundation - вырезать все лишнее.
+
+

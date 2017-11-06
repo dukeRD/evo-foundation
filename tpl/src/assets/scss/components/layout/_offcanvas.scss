@@ -1,0 +1,57 @@
+// .offcanvas-toggle{
+// 	width: 2rem;
+// 	height: 2rem;
+// 	position: relative;
+// 	float: right;
+// 	margin-top: 0.25rem;
+// 	transition:all 0.4s;
+// 	@include hamburger($primary-color, $white, 36px, 36px, 6px, 3);
+// 	@include breakpoint(1004 up){
+// 		display: none;
+// 	}
+// }
+.off-canvas {
+		color: $white;
+    background-color: $black;
+}
+
+.off-canvas.is-open {
+    height: 100vh;
+}
+
+.offcanvas-nav {
+    padding-top: 2rem;
+}
+
+.offcanvas-nav__link {
+    font-size: 30px;
+
+    display: block;
+
+    margin-bottom: 2rem;
+
+    transition: color .1s;
+    text-align: center;
+    text-transform: uppercase;
+    &:hover {
+        transition: color .4s;
+    }
+    &.active {
+        color: darken($white, 30%);
+        background-color: darken($secondary-color, 10%);
+    }
+}
+
+.close-button {
+    font-size: 4rem;
+
+    transition: color .1s;
+
+    color: $white;
+    &:hover,
+    &:focus {
+        transition: color .5s;
+
+        color: $primary-color;
+    }
+}

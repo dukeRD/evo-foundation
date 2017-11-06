@@ -1,0 +1,31 @@
+<!doctype html>
+<html class="no-js" lang="ru">
+
+<head>
+    {{> head}}
+</head>
+
+<body class="parent[*parent*]" id="id[*id*]">
+
+    <div class="off-canvas-wrapper">
+
+        <div class="off-canvas position-left" id="offCanvas" data-off-canvas>
+            {{> offcanvas-content}}
+        </div>
+
+        <div class="off-canvas-content" data-off-canvas-content>
+            {{> header}}
+            {{> nav}}
+            {{> body}}
+            {{> footer}}
+        </div><!-- /off-canvas-content -->
+
+    </div><!-- /off-canvas-wrapper -->
+
+    <!-- JS -->
+    <!-- <script src="//code.jquery.com/jquery-3.2.1.min.js"></script> -->
+    <!-- TODO: check jq loaded -->
+    <script src="{{root}}assets/js/app.js"></script>
+</body>
+
+</html>

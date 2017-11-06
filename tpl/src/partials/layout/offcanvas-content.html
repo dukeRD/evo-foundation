@@ -1,0 +1,29 @@
+<!-- offcanvas.html -->
+
+  <!-- Close button -->
+  <button class="close-button" aria-label="Закрыть меню" type="button" data-close><span aria-hidden="true">&times;</span></button>
+
+
+<!--   <a href="[(site_url)]" class="offcanvas__logo" title="На главную страницу Карт Регион">
+    <img src="assets/img/logo-trans.png" alt="Карт Регион - полиграфические услуги">
+  </a> -->
+
+
+
+  <!-- Menu -->
+  <ul class="offcanvas__nav">
+    {{#each nav}}
+      <li><a class="nav__link" href="{{ this.href }}.html">{{ this.title }}</a></li>
+    {{/each}}
+  </ul>
+
+
+  <div class="offcanvas__contacts">
+  <p>
+    Позвоните нам:
+  </p>
+  <!--   <a class="skype" href="skype:vesia-home?call">vesia-home</a>
+    <a class="email" href="mailto:info@card-r.ru">info@card-r.ru</a> -->
+    <a class="phone" href="tel:+74957602360" title="Позвонить в Карт Регион">+7(495)760-23-60</a>
+  </div>
+

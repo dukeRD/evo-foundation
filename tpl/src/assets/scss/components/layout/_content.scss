@@ -1,0 +1,266 @@
+.main{
+	background: $white;
+	padding-bottom: 3rem;
+}
+
+
+.content-image-lead{
+	width: 100%;
+	margin-bottom: 1rem;
+}
+//------------------------------------------
+//                   BIO
+//------------------------------------------
+
+.bio-item {
+	text-align: justify;
+
+	&__link{
+		color:$black;
+
+		&:hover, &:active, &:focus{
+			color:$black;
+		}
+	}
+
+	&__image-wrap {
+		@include breakpoint(small only){
+	  	text-align: center;
+	  	margin-bottom: 1rem;
+		}
+	}
+}
+
+
+//------------------------------------------
+//                   Afisha
+//------------------------------------------
+.afisha-item {
+	margin-bottom: 2rem;
+
+	&__link{
+		color:$black;
+
+		&:hover, &:active, &:focus{
+			color:$black;
+		}
+	}
+
+	&__image {
+		width: 100%;
+
+	}
+
+	&__info {
+		margin-top: 1rem;
+	}
+
+	&__header {
+		font-size: 1.3rem;
+	}
+}
+
+
+//afisha carousel
+.afisha-carousel{
+
+}
+.afisha-carousel__header{
+	text-align: center;
+	text-transform: uppercase;
+	span{
+		border-bottom: 1px solid $medium-gray;
+		padding-left: 1rem;
+		padding-right: 1rem;
+		margin-bottom: 1rem;
+	}
+}
+
+.afisha-carousel__slide {
+	text-align: center;
+	@include breakpoint(small){
+		margin-bottom: 2rem;
+
+	}
+
+}
+
+.afisha-carousel__link{
+	margin-right: auto;
+	margin-left: auto;
+	position: relative;
+	display: block;
+	overflow: hidden;
+	color: $black;
+	width: 230px;
+
+}
+
+.afisha-carousel__hover {
+	text-align: center;
+	position: absolute;
+	padding: 1rem;
+	color: $black;
+	box-sizing: border-box;
+	top: 0;
+	left: -600px;
+	width: 100%;
+	transition:all 0.3s ease;
+		.afisha-carousel__link:hover & {
+			transform:translateX(600px);
+			transition:all 0.3s ease;
+		}
+
+		background-color:$primary-color;
+		.more {
+		}
+}
+
+
+.afisha-carousel__info {
+	text-align: center;
+	a{
+		color:$black;
+	}
+}
+.afisha-carousel__name {
+}
+.afisha-carousel__stage {
+	display: block;
+}
+.afisha-carousel__date {
+}
+
+
+
+//------------------------------------------
+//                   News
+//------------------------------------------
+
+.news-item {
+	text-align: justify;
+	margin-bottom: 2rem;
+
+	&__link{
+		color:$black;
+
+		&:hover, &:active, &:focus{
+			color:$black;
+		}
+	}
+
+	&__image-wrap {
+		text-align: center;
+	}
+
+	&__info {
+		margin-top: 0.5rem;
+	}
+
+	&__header {
+		font-size: 1rem;
+	}
+
+	&__text {
+		font-size: 0.9rem;
+	}
+}
+
+//------------------------------------------
+//                   Video
+//------------------------------------------
+
+.video-item {
+	text-align: justify;
+	margin-bottom: 2rem;
+
+	&__link{
+		color:$black;
+
+		&:hover, &:active, &:focus{
+			color:$black;
+		}
+	}
+
+	&__image-wrap {
+		text-align: center;
+		position: relative;
+	}
+
+	&__info {
+		margin-top: 0.5rem;
+	}
+
+	&__header {
+		font-size: 1rem;
+	}
+
+	&__text {
+		font-size: 0.9rem;
+	}
+}
+
+
+.play{
+	width: 68px;
+	height: 68px;
+	display: block;
+	position: absolute;
+	top: calc(50% - 34px);
+	left: calc(50% - 34px);
+	border:3px solid $primary-color;
+	border-radius:50%;
+	transition: all 0.4s ease;
+	box-shadow:0 0 4px 2px rgba($black,0.5);
+
+	&:after{
+		transform:scaleY(0.6);
+		position: absolute;
+		top: calc(50% - 1.4rem);
+		left: calc(50% - 0.4rem);
+		transition: all 0.4s ease;
+		@include css-triangle(1.4rem, $primary-color, right);
+	}
+
+	&:hover{
+		transition: all 0.4s ease;
+		border-color:$white;
+		box-shadow:none;
+
+		&:after{
+			transform:scale(0.8);
+		}
+	}
+}
+
+
+//*****************************
+// TICKETS
+//*****************************
+
+.tickets__header{
+	@extend .afisha-carousel__header;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+.tickets{
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	text-align: center;
+	max-width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+	.slick-dots li button {
+		background: $black !important;
+		border-radius:50%;
+		height: 14px;
+		width: 14px;
+
+	}
+}
+.tickets__item {
+	text-align: center;
+}
+.tickets__image {
+}
