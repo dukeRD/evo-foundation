@@ -971,6 +971,10 @@
 	],
 	"file_history":
 	[
+		"/D/openserver/domains/reezoq.evo/tpl/src/assets/scss/_settings.scss",
+		"/D/openserver/domains/reezoq.evo/tpl/src/partials/layout/head.html",
+		"/D/openserver/domains/reezoq.evo/.gitignore",
+		"/D/openserver/domains/reezoq.evo/sftp-config.json",
 		"/C/Users/dukeRD/Downloads/MetaX-1.5-evo.php",
 		"/D/openserver/domains/reezoq.evo/tpl/src/assets/scss/components/elements/_hero.scss",
 		"/D/openserver/domains/reezoq.evo/assets/tvs/multitv/configs/clients.config.inc.php",
@@ -982,7 +986,6 @@
 		"/D/openserver/domains/reezoq.evo/tpl/src/assets/scss/components/elements/_feedback-form.scss",
 		"/D/openserver/domains/reezoq.evo/tpl/src/assets/scss/components/elements/_case.scss",
 		"/D/openserver/domains/reezoq.evo/tpl/src/assets/js/app.js",
-		"/D/openserver/domains/reezoq.evo/tpl/src/assets/scss/_settings.scss",
 		"/D/openserver/domains/reezoq.evo/tpl/src/assets/scss/components/elements/_portfolio.scss",
 		"/D/openserver/domains/reezoq.evo/tpl/src/assets/scss/components/layout/_page.scss",
 		"/D/openserver/domains/reezoq.evo/tpl/src/partials/elements/portfolio.html",
@@ -1027,7 +1030,6 @@
 		"/D/openserver/domains/reezoq.evo/tpl/src/assets/js/lib/helpers.js",
 		"/D/openserver/domains/reezoq.evo/tpl/src/assets/js/lib/packery.pkgd.js",
 		"/D/openserver/domains/card.evo/assets/templates/foundation-zurb-template-6.4.1/src/assets/scss/app.scss",
-		"/D/openserver/domains/reezoq.evo/tpl/src/partials/layout/head.html",
 		"/D/openserver/domains/reezoq.evo/tpl/src/assets/scss/components/layout/_offcanvas.scss",
 		"/D/openserver/domains/reezoq.evo/tpl/src/pages/portfolio.html",
 		"/D/openserver/domains/reezoq.evo/tpl/src/assets/js/lib/jquery.justifiedGallery.min.js",
@@ -1079,7 +1081,6 @@
 		"/D/openserver/domains/derzhavin/assets/templates/derzhavin/src/data/global.yml",
 		"/D/openserver/domains/reezoq.evo/_misc/todo.todo",
 		"/D/openserver/domains/reezoq.evo/install/img/logo.png",
-		"/D/openserver/domains/reezoq.evo/.gitignore",
 		"/D/openserver/domains/derzhavin/.gitignore",
 		"/D/openserver/domains/reezoq.evo/tpl/src/assets/scss/components/_more-button.scss",
 		"/D/git/landing-test/tpl/src/assets/scss/_settings.scss",
@@ -1097,8 +1098,7 @@
 		"/C/Users/dukeRD/AppData/Roaming/REAPER/Scripts/half-time-selection.lua",
 		"/D/[progs]/sublime/Data/Packages/User/ReactIDE.sublime-settings",
 		"/D/[progs]/sublime/Data/Packages/sublime-react-ide/ReactIDE.sublime-settings",
-		"/D/[progs]/sublime/Data/Packages/JSLint/JSLint.sublime-settings",
-		"/D/git/.learn/js/app.js"
+		"/D/[progs]/sublime/Data/Packages/JSLint/JSLint.sublime-settings"
 	],
 	"find":
 	{
@@ -1169,25 +1169,13 @@
 		]
 	},
 	"menu_visible": true,
-	"output.exec":
-	{
-		"height": 253.0
-	},
 	"output.find_results":
 	{
 		"height": 0.0
 	},
-	"output.gist_log":
-	{
-		"height": 118.0
-	},
 	"output.sftp":
 	{
-		"height": 31.0
-	},
-	"output.unsaved_changes":
-	{
-		"height": 28.0
+		"height": 0.0
 	},
 	"pinned_build_system": "",
 	"project": "base-project.sublime-project",

@@ -9,6 +9,9 @@
 # except do not ignore .gitignore
 !.gitignore
 
+#sublime 
+*.sublime-workspace
+
 #evo
 assets/cache/
 assets/backup/
