@@ -3,16 +3,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="[(site_url)]">
     <title>[*titl*]</title>
-    [*noIndex*]
+    <!-- [*noIndex*] -->
     <link rel="canonical" href="[(site_url)][[if? &is=`[*id*]:not:1` &then=`[~[*id*]~]`]]">
     <meta name="description" content="[*description*]">
     <meta name="Keywords" content="[*keyw*]">
-    <meta name="image" content="http://[(site_url)]/tpl/dist/assets/img/map-marker.png">
+    <meta name="image" content="">
     <meta name="author" content="dukerd.ru">
     <!-- Schema.org for Google -->
     <meta itemprop="name" content="[*titl*]">
     <meta itemprop="description" content="[*description*]">
-    <meta itemprop="image" content="http://[(site_url)]/tpl/dist/assets/img/map-marker.png">
+    <meta itemprop="image" content="">
     <!-- Open Graph general (Facebook, Pinterest & Google+) -->
     <meta name="og:title" content="[*titl*]">
     <meta name="og:description" content="[*description*]">
@@ -36,7 +36,7 @@
 
 
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400&amp;subset=cyrillic" rel="stylesheet">
-    <link rel="stylesheet" href="tpl/dist/assets/css/app.css">
+    <link rel="stylesheet" href="{{root}}assets/css/app.css">
 
      <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
