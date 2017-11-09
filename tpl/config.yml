@@ -14,11 +14,15 @@ UNCSS_OPTIONS:
   ignore:
     - !!js/regexp .foundation-mq
     - !!js/regexp ^\.is-.*
+    - !!js/regexp ^\.is-.*
+    - !!js/regexp ^\.active
+    - !!js/regexp ^\.callout
+
 
 # Gulp will reference these paths when it copies files
 PATHS:
   # Path to dist folder
-  dist: "dist"  
+  dist: "dist"
   # Paths to static assets that aren't images, CSS, or JavaScript
   assets:
     - "src/assets/**/*"
