@@ -1,0 +1,43 @@
+.close-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block;
+
+    cursor: pointer;
+
+    @include box(3rem);
+
+
+
+    &:before,
+    &:after {
+        position: absolute;
+        top: 0;
+        left: 1.5rem;
+
+        display: block;
+
+        width: 2px;
+        height: 3rem;
+
+        content: '';
+        transition: background-color .3s;
+        transform: rotate(-45deg);
+
+        background-color: $primary-color;
+    }
+
+    &:after {
+        transform: rotate(45deg);
+    }
+    &:hover {
+        &:before,
+        &:after {
+            transition: background-color .8s;
+
+            background-color: $white;
+        }
+    }
+}
