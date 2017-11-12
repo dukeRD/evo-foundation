@@ -16,13 +16,14 @@
 	<link rel="canonical" href="[(site_url)][[if? &is=`[*id*]:not:1` &then=`[~[*id*]~]`]]">
     <meta name="description" content="[*description*]">
     <meta name="Keywords" content="[*keyw*]">
-	<meta name="image" content="http://[(site_url)]/tpl/dist/assets/img/map-marker.png">
+	<meta name="image" content="">
+    <meta http-equiv="Reply-to" content="dukerd@dukerd.ru">
 	<meta name="author" content="dukerd.ru">
-	
+
 	<!-- Schema.org for Google -->
 	<meta itemprop="name" content="[*titl*]">
 	<meta itemprop="description" content="[*description*]">
-	<meta itemprop="image" content="http://[(site_url)]/tpl/dist/assets/img/map-marker.png">
+	<meta itemprop="image" content="">
 	<!-- Open Graph general (Facebook, Pinterest & Google+) -->
 	<meta name="og:title" content="[*titl*]">
 	<meta name="og:description" content="[*description*]">
@@ -41,7 +42,11 @@
     <meta name="msapplication-config" content="tpl/dist/assets/favicon/browserconfig.xml">
     <meta name="theme-color" content="#28253a">
 
- 
+     <!-- RSS
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="[(site_url)][~11~]" >
+    -->
+
+
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400&amp;subset=cyrillic" rel="stylesheet">
 	<link rel="stylesheet" href="tpl/dist/assets/css/app.css">
 
