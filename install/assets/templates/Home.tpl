@@ -3,8 +3,8 @@
  *
  *
  *
- * @category	template
- * @internal	@modx_category uncategorized
+ * Главная страница
+ * @internal    @modx_category
  */
 {{template_top}}
 
