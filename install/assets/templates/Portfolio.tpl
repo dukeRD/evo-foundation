@@ -1,10 +1,10 @@
 /**
- * Портфолио
+ * Страница
  *
  *
  *
- * @category	template
- * @internal	@modx_category uncategorized
+ * Базовый шаблон страницы
+ * @internal	@modx_category
  */
 {{template_top}}
 	<h1 class="page-header">[[alterTitle]]</h1>

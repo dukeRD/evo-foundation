@@ -1,10 +1,10 @@
 /**
- * Страница
+ * Каталог
  *
  *
  *
- * @category	template
- * @internal	@modx_category uncategorized
+ * Вызов DocLister с пагинацией
+ * @internal	@modx_category
  */
 {{template_top}}
 	<h1 class="page-header">[[alterTitle]]</h1>

@@ -4,7 +4,7 @@
  * Изображение для значка на карте
  *
  * @category        tv
- * @name            desc
+ * @name            map-image
  * @internal        @caption Изображение для значка на карте
  * @internal        @input_type image
  * @internal        @input_options
