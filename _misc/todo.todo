@@ -27,8 +27,21 @@
     ☐ синтаксис для Эво тегов
  ☐ команда деплоя
 
+$image = $modx->db->query( 'SELECT * FROM `modx_sg_images` WHERE sg_rid='.$data['id'].' AND sg_isactive=1 AND sg_index=0 ORDER BY sg_index ASC' );
+ $image = $modx->db->getRow( $image );
+
+ ☐ не игнорировать системные папки Эво
 
 
+// LOOKIN IN FOUNDATION DOCS
 
+@include xy-cell-offset($n, $vertical);
+
+
+@include flex;
+@include flex-align(center, middle);
+
+
+@include xy-cell(6,false); //remove gutters
 
 
