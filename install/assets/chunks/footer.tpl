@@ -1,33 +1,26 @@
 /**
  * footer
  *
- * нижняя часть страниц
+ * содержимое футера
  *
  * @category	chunk
  * @internal @modx_category Template
  */
 <footer class="footer">
-    <div class="footer__copyright">
-        &copy; Reezoq, 2017
-        <div class="footer__name">
-            Студия дизайна и технологий
-        </div>
-    </div>
-    <div class="footer__contacts">
-        <div class="phone">+7 999-11-22</div>
-        <a class="email" href="mailto:reezoq@studio.ru">reezoq@studio.ru</a>
+  <div  class="footer_wrapper">
+    <div class="footer__logo">
+     {{logo}}
     </div>
     <div class="footer__social">
-        <ul class="social">
-            <li class="social__item">
-                <a href="#" class="social__icon behance" title="наша страница на behance.net"></a>
-            </li>
-            <li class="social__item">
-                <a href="#" class="social__icon pinterest" title="наша страница в pinterest.com"></a>
-            </li>
-            <li class="social__item">
-                <a href="#" class="social__icon facebook" title="наша страница в facebook.com"></a>
-            </li>
-        </ul>
+      <h4 class="footer__header">Мы в соцсетях:</h4>
+      <div class="social">
+        <a href="" class="social__link social__link--vk" target="_blank"  rel="noopener noreferrer"></a>
+        <a href="https://www.instagram.com/ohoflowers/" class="social__link social__link--instagram"  target="_blank" rel="noopener noreferrer"></a>
+      </div>
     </div>
+    <div class="footer__copyright">
+      Студия декора<br>
+      &copy; [[yearCopyright]]
+    </div>
+  </div>
 </footer>

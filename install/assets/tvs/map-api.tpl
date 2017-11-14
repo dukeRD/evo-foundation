@@ -1,15 +1,18 @@
 /**
  * map-api
  *
- * 
+ * Ключ для API карт
  *
- * @category	tv
- * @internal	@modx_category Vendors
- * @internal    @caption Ключ для API карт
- * @internal    @input_type text
- * @internal    @input_options 
- * @internal    @input_default AIzaSyAD_FjuMV5OsKUCt1WaebFI11kBuUBhQgM
- * @internal	@output_widget 
- * @internal	@output_widget_params 
- * @internal    @template_assignments Контакты
+ * @category        tv
+ * @name
+ * @internal        @caption Ключ для API карт
+ * @internal        @input_type text
+ * @internal        @input_options
+ * @internal        @input_default
+ * @internal        @output_widget
+ * @internal        @output_widget_params
+ * @internal        @lock_tv 0
+ * @internal        @template_assignments
+ * @internal        @modx_category Vendors
+ * @internal        @installset sample
  */

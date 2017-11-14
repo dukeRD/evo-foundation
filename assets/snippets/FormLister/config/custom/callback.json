@@ -1,0 +1,11 @@
+{
+	"subject":"Заказ на обратный звонок с сайта ohostudio.ru",
+	"formTpl":"form-callback-template",
+	"reportTpl":"form-callback-report",
+  "errorClass":"has-error",
+  "requiredClass":"has-warning",
+  "successTpl":"@CODE: <div class=\"cell small-12 text-center text-large callout callback-form-success\"> <h3>Спасибо!</h3> <p>ваше письмо успешно отправлено.</p> </div>",
+  "messagesOuterTpl":"@CODE:<div class=\"callout alert\" role=\"alert\">[+messages+]</div>",
+  "errorTpl":"@CODE:<span class=\"help-block\">[+message+]</span>",
+  "rules":"{\"phone\":{\"required\":\"Обязательно введите номер телефона\", \"phone\":\"Введите номер правильно\"} }"
+}

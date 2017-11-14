@@ -1,7 +1,7 @@
 /**
  * template_top
  *
- * верхняя часть всех шаблонов
+ * открывающая часть всех шаблонов
  *
  * @category	chunk
  * @internal @modx_category Template
@@ -17,13 +17,9 @@
 
     <div class="off-canvas-wrapper">
 
-        <div class="off-canvas position-top" id="offCanvas" data-off-canvas>
+        <div class="off-canvas position-left" id="offCanvas" data-off-canvas>
             {{offcanvas-content}}
         </div>
 
-        <div class="off-canvas-content" data-off-canvas-content [[hero-image]]>
+        <div class="off-canvas-content" data-off-canvas-content>
             {{header}}
-
-            <div class="page [+page_class+]">
-                <div class="page__wrapper grid-x grid-padding-x">
-				<!-- ************************************************* -->	

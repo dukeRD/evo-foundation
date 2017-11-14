@@ -1,15 +1,18 @@
 /**
  * contact-phone
  *
- * 
+ * Телефон
  *
- * @category	tv
- * @internal	@modx_category Контакты
- * @internal    @caption Телефон
- * @internal    @input_type text
- * @internal    @input_options 
- * @internal    @input_default +7 999 999-11-22
- * @internal	@output_widget 
- * @internal	@output_widget_params 
- * @internal    @template_assignments Контакты
+ * @category        tv
+ * @name            contact-phone
+ * @internal        @caption Телефон
+ * @internal        @input_type text
+ * @internal        @input_options
+ * @internal        @input_default
+ * @internal        @output_widget
+ * @internal        @output_widget_params
+ * @internal        @lock_tv 0
+ * @internal        @template_assignments
+ * @internal        @modx_category Контакты
+ * @internal        @installset sample
  */

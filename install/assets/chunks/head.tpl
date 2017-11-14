@@ -11,25 +11,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="[(site_url)]">
     <title>[*titl*]</title>
-	[*noIndex*]
-
-	<link rel="canonical" href="[(site_url)][[if? &is=`[*id*]:not:1` &then=`[~[*id*]~]`]]">
-    <meta name="description" content="[*description*]">
+    [*noIndex*]
+    <link rel="canonical" href="[(site_url)][[if? &is=`[*id*]:not:1` &then=`[~[*id*]~]`]]">
+    <meta name="description" content="[*desc*]">
     <meta name="Keywords" content="[*keyw*]">
-	<meta name="image" content="">
-    <meta http-equiv="Reply-to" content="dukerd@dukerd.ru">
-	<meta name="author" content="dukerd.ru">
-
-	<!-- Schema.org for Google -->
-	<meta itemprop="name" content="[*titl*]">
-	<meta itemprop="description" content="[*description*]">
-	<meta itemprop="image" content="">
-	<!-- Open Graph general (Facebook, Pinterest & Google+) -->
-	<meta name="og:title" content="[*titl*]">
-	<meta name="og:description" content="[*description*]">
-	<meta name="og:type" content="website">
-	<meta http-equiv="Content-language" content="ru-RU">
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="image" content="">
+    <meta name="author" content="dukerd.ru">
+    <!-- Schema.org for Google -->
+    <meta itemprop="name" content="[*titl*]">
+    <meta itemprop="description" content="[*desc*]">
+    <meta itemprop="image" content="">
+    <!-- Open Graph general (Facebook, Pinterest & Google+) -->
+    <meta name="og:title" content="[*titl*]">
+    <meta name="og:description" content="[*desc*]">
+    <meta name="og:type" content="website">
+    <meta http-equiv="Content-language" content="ru-RU">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <!-- favicon generator -->
@@ -42,13 +39,8 @@
     <meta name="msapplication-config" content="tpl/dist/assets/favicon/browserconfig.xml">
     <meta name="theme-color" content="#28253a">
 
-     <!-- RSS
-    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="[(site_url)][~11~]" >
-    -->
-
-
-    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400&amp;subset=cyrillic" rel="stylesheet">
-	<link rel="stylesheet" href="tpl/dist/assets/css/app.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600|Playfair+Display&amp;subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="tpl/dist/assets/css/app.css">
 
      <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>

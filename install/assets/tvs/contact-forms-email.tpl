@@ -3,13 +3,16 @@
  *
  * адрес, на который уходят заполненные формы
  *
- * @category	tv
- * @internal	@modx_category Контакты
- * @internal    @caption Email для отправки форм
- * @internal    @input_type email
- * @internal    @input_options 
- * @internal    @input_default reezoq@studio.ru
- * @internal	@output_widget 
- * @internal	@output_widget_params 
- * @internal    @template_assignments Контакты
+ * @category        tv
+ * @name            contact-forms-email
+ * @internal        @caption адрес, на который уходят заполненные формы
+ * @internal        @input_type email
+ * @internal        @input_options
+ * @internal        @input_default dukerd@dukerd.ru
+ * @internal        @output_widget
+ * @internal        @output_widget_params
+ * @internal        @lock_tv 0
+ * @internal        @template_assignments
+ * @internal        @modx_category Контакты
+ * @internal        @installset sample
  */

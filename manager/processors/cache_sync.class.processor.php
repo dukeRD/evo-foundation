@@ -93,6 +93,13 @@ class synccache
             }
         }
 
+        if(function_exists('opcache_get_status')) {
+            $opcache = opcache_get_status();
+            if (!empty($opcache['opcache_enabled'])) {
+                opcache_reset();
+            }
+        }
+
         $this->buildCache($modx);
 
         $this->publishTimeConfig();
@@ -103,6 +110,9 @@ class synccache
             $total = count($deletedfiles);
             echo sprintf($_lang['refresh_cache'], $filesincache, $total);
             if ($total > 0) {
+                if (isset($opcache)) {
+                    echo '<p>Opcache empty.</p>';
+                }
                 echo '<p>' . $_lang['cache_files_deleted'] . '</p><ul>';
                 foreach ($deletedfiles as $deletedfile) {
                     echo '<li>' . $deletedfile . '</li>';
@@ -255,7 +265,7 @@ class synccache
         $content .= '$c=&$this->chunkCache;';
         while ($doc = $modx->db->getRow($rs)) {
             if ($modx->config['minifyphp_incache']) {
-                $doc['snippet'] = preg_replace(array('|\s+|', '|<!--|', '|-->|', '|-->\s+<!--|'), array(' ', "\n" . '<!--', '-->' . "\n", '-->' . "\n" . '<!--'), $doc['snippet']);
+                $doc['snippet'] = $this->php_strip_whitespace($doc['snippet']);
             }
             $content .= '$c[\'' . $doc['name'] . '\']=\'' . ($doc['disabled'] ? '' : $this->escapeSingleQuotes($doc['snippet'])) . '\';';
         }
