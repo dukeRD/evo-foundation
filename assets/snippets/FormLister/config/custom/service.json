@@ -1,0 +1,11 @@
+{
+	"subject":"Новый вопрос с сайта ohostudio.ru",
+	"formTpl":"form-service-template",
+	"reportTpl":"form-service-report",
+  "errorClass":"has-error",
+  "requiredClass":"has-warning",
+  "successTpl":"@CODE: <div class=\"cell small-12 text-center text-large callout service-form-success\"> <h3>Спасибо!</h3> <p>ваше письмо успешно отправлено.</p> </div>",
+  "messagesOuterTpl":"@CODE:<div class=\"callout alert\" role=\"alert\">[+messages+]</div>",
+  "errorTpl":"@CODE:<span class=\"help-block\">[+message+]</span>",
+  "rules":"{\"name\":{\"required\":\"Обязательно введите имя\"}, \"phone\":{\"required\":\"Обязательно введите номер телефона\", \"phone\":\"Введите номер правильно\"}, \"message\":{\"required\":\"Обязательно введите сообщение\", \"minLength\":{\"params\":10, \"message\":\"Сообщение должно быть не менее 10 символов\"} } }"
+}
