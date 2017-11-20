@@ -1,0 +1,40 @@
+.service-form {
+    position: relative;
+    padding: 4rem 1rem 1rem;
+}
+
+.service-form__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+
+.service-form__form {}
+
+.service-form__group {
+    @extend %form-group;
+}
+
+.service-form__error-msg {}
+
+
+.service-form__label {}
+
+.service-form__input {
+    @extend %form-input;
+}
+
+
+.service-form__input--text {
+    min-height: 4rem;
+}
+
+.service-form__warning {
+    @extend %form-warning;
+}
+
+.service-form__button {
+
+    .button {}
+}
