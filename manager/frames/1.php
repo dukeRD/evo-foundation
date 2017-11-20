@@ -171,7 +171,8 @@ if ($modx->config['manager_theme'] == 'default') {
           not_deleted: "<?= $_lang['not_deleted'] ?>",
           unable_set_link: "<?= $_lang['unable_set_link'] ?>",
           unable_set_parent: "<?= $_lang['unable_set_parent'] ?>",
-          working: "<?= $_lang['working'] ?>"
+          working: "<?= $_lang['working'] ?>",
+          paging_prev: "<?= $_lang["paging_prev"] ?>"
         },
         style: {
           actions_file: '<?= addslashes($_style['actions_file']) ?>',
@@ -284,14 +285,14 @@ if ($modx->config['manager_theme'] == 'default') {
                                         <?php } ?>
                                         <?php if ($use_browser && $modx->hasPermission('assets_images')) { ?>
                                             <li>
-                                                <a onclick="" href="media/browser/mcpuk/browse.php?&type=images" target="main">
+                                                <a onclick="" href="media/browser/<?= $which_browser ?>/browse.php?&type=images" target="main">
                                                     <?= $_style['images_management'] ?><?= $_lang['images_management'] ?>
                                                 </a>
                                             </li>
                                         <?php } ?>
                                         <?php if ($use_browser && $modx->hasPermission('assets_files')) { ?>
                                             <li>
-                                                <a onclick="" href="media/browser/mcpuk/browse.php?&type=files" target="main">
+                                                <a onclick="" href="media/browser/<?= $which_browser ?>/browse.php?&type=files" target="main">
                                                     <?= $_style['files_management'] ?><?= $_lang['files_management'] ?>
                                                 </a>
                                             </li>
