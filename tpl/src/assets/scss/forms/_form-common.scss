@@ -1,0 +1,45 @@
+%form-input {
+    background-color: $white;
+    color: $secondary-color;
+    border-bottom: 1px solid $secondary-color;
+    &:focus,
+    &:active {
+        background-color: $white;
+    }
+}
+
+
+%form-group {
+	width: 100%;
+
+	&.has-error,
+	&.has-warning {
+		input[class *=__input] {
+		    // border-color: $alert-color;
+		    &:active,
+		    &:focus {
+		        // border-color: $secondary-color;
+		    }
+		}
+	}
+    [class *=__error-msg] {
+        font-size: 0.85rem;
+        margin-top: -0.2rem;
+        margin-bottom: 1rem;
+        color: $alert-color;
+    }
+
+    [class *=__warning] {
+        color: $dark-gray;
+        font-size: small;
+        margin-bottom: 1rem;
+    }
+}
+
+
+%form-warning{
+	    font-size: 0.9rem;
+    color: $medium-gray;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}

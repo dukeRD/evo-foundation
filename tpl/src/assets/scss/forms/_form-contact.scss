@@ -1,0 +1,29 @@
+.contact-form {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1000;
+}
+
+
+.contact-form__input {
+    @extend %form-input;
+}
+
+.contact-form__input--text {
+    min-height: 6rem;
+}
+
+.contact-form__warning {
+
+    @extend %form-warning;
+}
+
+
+.contact-form__group {
+
+    @extend %form-group;
+}
+
+
+.contact-form__button {}

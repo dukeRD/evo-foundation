@@ -1,0 +1,40 @@
+.callback-form {
+    position: relative;
+    padding-top: 4rem;
+}
+
+.callback-form__close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
+
+.callback-form__form {}
+
+.callback-form__group {
+    @extend %form-group;
+}
+
+.callback-form__description {
+    margin-bottom: 1rem;
+    padding-right: 2rem;
+    color: $secondary-color;
+}
+
+.callback-form__label {}
+
+.callback-form__input {
+    @extend %form-input;
+}
+
+
+.callback-form__warning {
+    @extend %form-warning;
+}
+
+.callback-form__error-msg {}
+
+.callback-form__button {
+
+    .button {}
+}
