@@ -1,6 +1,6 @@
 <?php
-if(IN_MANAGER_MODE != 'true') {
-	die('<b>INCLUDE_ORDERING_ERROR</b><br /><br />Please use the MODX Content Manager instead of accessing this file directly.');
+if( ! defined('IN_MANAGER_MODE') || IN_MANAGER_MODE !== true) {
+	die('<b>INCLUDE_ORDERING_ERROR</b><br /><br />Please use the EVO Content Manager instead of accessing this file directly.');
 }
 
 unset($_SESSION['itemname']); // clear this, because it's only set for logging purposes
@@ -12,6 +12,8 @@ if($modx->hasPermission('settings') && (!isset($settings_version) || $settings_v
 
 // set placeholders
 $ph = $_lang;
+$_SESSION['nrtotalmessages'] = 0;
+$_SESSION['nrnewmessages'] = 0;
 
 // setup message info
 if($modx->hasPermission('messages')) {
@@ -26,7 +28,7 @@ if($modx->hasPermission('messages')) {
 	$nrnewmessages = $_SESSION['nrnewmessages'] > 0 ? '<span style="color:red;">' . $_SESSION['nrnewmessages'] . '</span>' : '0';
 	$welcome_messages = sprintf($_lang['welcome_messages'], $_SESSION['nrtotalmessages'], $nrnewmessages);
 	$msg[] = sprintf('<span class="comment">%s</span>', $welcome_messages);
-	$ph['MessageInfo'] = join("\n", $msg);
+	$ph['MessageInfo'] = implode("\n", $msg);
 }
 
 // setup icons
@@ -82,9 +84,10 @@ if(isset($_SESSION['show_logout_reminder'])) {
 }
 
 // Check multiple sessions
-$where = sprintf("internalKey='%s'", $modx->db->escape($_SESSION['mgrInternalKey']));
-$rs = $modx->db->select('count(*) AS count', '[+prefix+]active_user_sessions', $where);
-$count = $modx->db->getValue($rs);
+//$where = sprintf("internalKey='%s'", $modx->db->escape($_SESSION['mgrInternalKey']));
+//$rs = $modx->db->select('count(*) AS count', '[+prefix+]active_user_sessions', $where);
+//$count = $modx->db->getValue($rs);
+/*
 if($count > 1) {
 	$ph['multiple_sessions_msg'] = $modx->parseText($_lang['multiple_sessions_msg'], array(
 		'username' => $_SESSION['mgrShortname'],
@@ -93,7 +96,8 @@ if($count > 1) {
 	$ph['show_multiple_sessions'] = 'block';
 } else {
 	$ph['show_multiple_sessions'] = 'none';
-}
+}*/
+$ph['show_multiple_sessions'] = 'none';
 
 $ph['RecentInfo'] = getRecentInfo();
 
@@ -316,7 +320,7 @@ $widgets['welcome'] = array(
 					</table>
 				</div>
 		',
-	'hide'=>'0'	
+	'hide'=>'0'
 );
 $widgets['onlineinfo'] = array(
 	'menuindex' => '20',
@@ -325,7 +329,7 @@ $widgets['onlineinfo'] = array(
 	'icon' => 'fa-user',
 	'title' => '[%onlineusers_title%]',
 	'body' => '<div class="userstable">[+OnlineInfo+]</div>',
-	'hide'=>'0'	
+	'hide'=>'0'
 );
 $widgets['recentinfo'] = array(
 	'menuindex' => '30',
@@ -334,7 +338,7 @@ $widgets['recentinfo'] = array(
 	'icon' => 'fa-pencil-square-o',
 	'title' => '[%activity_title%]',
 	'body' => '<div class="widget-stage">[+RecentInfo+]</div>',
-	'hide'=>'0'	
+	'hide'=>'0'
 );
 if ($modx->config['rss_url_news']) {
     $widgets['news'] = array(
@@ -441,7 +445,7 @@ echo $content;
 function getTplWidget() { // recent document info
 	return '
 		<div class="[+cols+]" id="[+id+]">
-			<div class="card"[+bodyAttr+]>
+			<div class="card"[+cardAttr+]>
 				<div class="card-header"[+headAttr+]> <i class="fa [+icon+]"></i> [+title+] </div>
 				<div class="card-block"[+bodyAttr+]> [+body+] </div>
 			</div>
@@ -557,7 +561,7 @@ function getRecentInfoList() {
 
 		$output[] = $modx->parseText($tpl, $ph);
 	}
-	return join("\n", $output);
+	return implode("\n", $output);
 }
 
 function getRecentInfoRowTpl() {
