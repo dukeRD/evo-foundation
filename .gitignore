@@ -8,6 +8,7 @@
 
 # except do not ignore .gitignore
 !.gitignore
+todo.todo
 
 #sublime
 *.sublime-workspace
