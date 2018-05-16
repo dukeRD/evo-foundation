@@ -128,10 +128,6 @@
     margin-top: -1px;
   }
 
-  #treePane .panel-heading:first-child {
-      border-top-color: transparent !important;
-  }
-
   #treePane .panel {
     padding-top: 1px;
   }
@@ -140,13 +136,19 @@
     background-color: #eaeaea;
   }
 
-  .dark #treePane .panel-heading {
+  #treePane .panel-title a:hover {
+    background-color: transparent;
+  }
+
+  .dark #treePane .panel-heading,
+  .darkness #treePane .panel-heading {
     border-top: 1px solid #3e4144;
     border-bottom: 1px solid #3e4144;
     background-color: #2f323a;
   }
 
-  .dark #treePane .panel-heading:hover {
+  .dark #treePane .panel-heading:hover,
+  .darkness #treePane .panel-heading:hover {
     background-color: #363942;
   }
 
@@ -264,7 +266,8 @@
     color: #404040;
   }
 
-  .dark.ElementsInTree #tree .actionButtons--eit li a:hover {
+  .dark.ElementsInTree #tree .actionButtons--eit li a:hover,
+  .darkness.ElementsInTree #tree .actionButtons--eit li a:hover {
     color: #bfbfbf;
   }
 
@@ -278,8 +281,23 @@
 
   .ElementsInTree #tree .tab-page .panel-group .panel,
   .ElementsInTree #tree #tabDoc.tab-page>div {
-    max-height: calc(100vh - 8rem) !important;
     overflow: auto;
+  }
+  
+  .ElementsInTree #tree #tabDoc.tab-page>div {
+    max-height: calc(100vh - 10rem) !important;
+  }
+
+  .ElementsInTree #tree.has-treemenu-intab #tabDoc.tab-page>div {
+    max-height: calc(100vh - 10.3rem) !important;
+  }
+
+  .ElementsInTree #tree .tab-page .panel-group .panel {
+    max-height: calc(100vh - 9rem) !important;
+  }
+
+  .ElementsInTree #tree.has-treemenu-intab .tab-page .panel-group .panel {
+    max-height: calc(100vh - 7.125rem) !important;
   }
 
   .ElementsInTree #tree .tab-page .panel-group {
@@ -346,11 +364,15 @@
     color: #657587;
   }
 
-  .ElementsInTree #tree .eltree:hover, .ElementsInTree #tree .eltree.current {
+  .ElementsInTree #tree .eltree:hover, 
+  .ElementsInTree #tree .eltree.current {
     background-color: rgba(33, 150, 243, 0.1);
   }
 
-  .dark.ElementsInTree #tree .eltree:hover, .dark.ElementsInTree #tree .eltree.current {
+  .dark.ElementsInTree #tree .eltree:hover, 
+  .dark.ElementsInTree #tree .eltree.current,
+  .darkness.ElementsInTree #tree .eltree:hover, 
+  .darkness.ElementsInTree #tree .eltree.current {
     background-color: rgba(255, 255, 255, 0.15);
   }
 
@@ -399,67 +421,116 @@
     background-color: #fafafa;
   }
 
-  .dark.ElementsInTree #tree .treeframebody {
+  .dark.ElementsInTree #tree .treeframebody,
+  .darkness.ElementsInTree #tree .treeframebody {
     background-color: #202329 !important;
     color: #828282;
     border-color: #2a2d33
   }
 
-  .dark.ElementsInTree #tree .tab-row .tab {
+  .dark.ElementsInTree #tree .tab-row .tab,
+  .darkness.ElementsInTree #tree .tab-row .tab {
     color: #7b7b7b;
     border-color: #2a2d33;
     background-color: #1a1c21;
   }
 
-  .dark.ElementsInTree #tree .tab-row .tab:hover {
+  .dark.ElementsInTree #tree .tab-row .tab:hover,
+  .darkness.ElementsInTree #tree .tab-row .tab:hover {
     background-color: #2d3033;
   }
 
-  .dark.ElementsInTree #tree .tab-row .tab.selected {
+  .dark.ElementsInTree #tree .tab-row .tab.selected,
+  .darkness.ElementsInTree #tree .tab-row .tab.selected {
     background-color: #202329;
     color: #bfbfbf;
   }
 
-  .dark.ElementsInTree #tree .tab-row .tab span {
+  .dark.ElementsInTree #tree .tab-row .tab span,
+  .darkness.ElementsInTree #tree .tab-row .tab span {
     background-color: transparent;
   }
 
-  .dark.ElementsInTree #tree .tab-page {
+  .dark.ElementsInTree #tree .tab-page,
+  .darkness.ElementsInTree #tree .tab-page {
     background-color: #202329;
   }
 
-  .dark.ElementsInTree #tree .tab-page .panel-group {
+  .dark.ElementsInTree #tree .tab-page .panel-group,
+  .darkness.ElementsInTree #tree .tab-page .panel-group {
     border-color: #3e4144;
   }
 
-  .dark.ElementsInTree #tree .form-control {
+  .dark.ElementsInTree #tree .form-control,
+  .darkness.ElementsInTree #tree .form-control {
     background-color: transparent;
     color: #c7c7c7;
   }
 
-  .dark.ElementsInTree #tree a {
+  .dark.ElementsInTree #tree a,
+  .darkness.ElementsInTree #tree a {
     color: #b7b7b7;
   }
 
   .dark.ElementsInTree #tree .disabledPlugin, 
-  .dark.ElementsInTree #tree .disabledPlugin a {
+  .dark.ElementsInTree #tree .disabledPlugin a,
+  .darkness.ElementsInTree #tree .disabledPlugin, 
+  .darkness.ElementsInTree #tree .disabledPlugin a {
     color: #B68282;
   }
 
-  .dark.ElementsInTree #tree a:hover {
+  .dark.ElementsInTree #tree a:hover,
+  .darkness.ElementsInTree #tree a:hover {
     color: #dbdbdb;
   }
 
-  .dark.ElementsInTree #tree .disabledPlugin a {
+  .dark.ElementsInTree #tree .disabledPlugin a,
+  .darkness.ElementsInTree #tree .disabledPlugin a {
     color: #b68282;
   }
 
-  .dark.ElementsInTree #treeMenu {
+  .dark.ElementsInTree #treeMenu,
+  .darkness.ElementsInTree #treeMenu {
     background-color: rgba(0, 0, 0, 0.2) !important;
   }
 
-  .dark.ElementsInTree #treeMenu.is-intab {
+  .dark.ElementsInTree #treeMenu.is-intab,
+  .darkness.ElementsInTree #treeMenu.is-intab {
     background-color: transparent !important;
+  }
+  
+  #treePane .panel-title {
+    font-size: 0.8125rem;
+  }
+
+  #treePane .panel-title a {
+    padding: 4px 0 6px 0.6rem !important;
+  }
+
+  #treePane .panel-title > a:before {
+    display: none !important;
+  }
+
+  #treePane .tab-page ul {
+    margin: 7px 0 !important;
+  }
+
+  .ElementsInTree #tree .eltree {
+    padding-left: 1rem !important;
+    font-size: 13px;
+  }
+
+  .dark #treePane .panel-heading,
+  .darkness #treePane .panel-heading {
+    border-top-color: #3e4144 !important;
+    border-bottom-color: transparent !important;
+  }
+
+
+  #treePane .panel-heading:first-child,
+  .dark #treePane .panel-heading:first-child,
+  .darkness #treePane .panel-heading:first-child {
+    border-top-color: transparent !important;
   }
 
 
@@ -600,12 +671,16 @@
           for (i = 0; i < tabs.length; i++) {
             if (tabs[i].id !== 'tabDoc') {
               el = tabs[i].getElementsByClassName('panel-group')[0];
-              el.style.display = 'none';
-              el.classList.add('clone');
-              p = document.getElementById(tabs[i].id);
-              if (p) {
-                r = p.getElementsByClassName('panel-group')[0];
-                p.insertBefore(el, r)
+              if (el) {
+                el.style.display = 'none';
+                el.classList.add('clone');
+                p = document.getElementById(tabs[i].id);
+                if (p) {
+                  r = p.getElementsByClassName('panel-group')[0];
+                  if (r) {
+                    p.insertBefore(el, r);
+                  }
+                }
               }
             }
           }
@@ -615,13 +690,17 @@
               el = document.getElementById(tabs[i].id);
               if (el) {
                 el = el.getElementsByClassName('panel-group')[1];
-                el.parentNode.removeChild(el);
+                if (el) {
+                  el.parentNode.removeChild(el);
+                }
               }
               el = document.getElementById(tabs[i].id);
               if (el) {
                 el = el.getElementsByClassName('panel-group')[0];
-                el.classList.remove('clone');
-                el.style.display = 'block'
+                if (el) {
+                  el.classList.remove('clone');
+                  el.style.display = 'block';
+                }
               }
             }
           }
@@ -639,27 +718,27 @@
                 var collapseItems = $(this).closest('.panel-group').find('> .panel > .panel-collapse');
                 if (thisItemCollapsed) {
                   toggleItems.removeClass('collapsed');
-                  collapseItems.collapse('show')
+                  collapseItems.collapse('show');
                 } else {
                   toggleItems.addClass('collapsed');
-                  collapseItems.collapse('hide')
+                  collapseItems.collapse('hide');
                 }
                 toggleItems.each(function() {
                   var state = $(this).hasClass('collapsed') ? 1 : 0;
-                  setLastCollapsedCategory($(this).data('cattype'), $(this).data('catid'), state)
+                  setLastCollapsedCategory($(this).data('cattype'), $(this).data('catid'), state);
                 });
-                writeElementsInTreeParamsToStorage()
+                writeElementsInTreeParamsToStorage();
               } else {
                 $(this).toggleClass('collapsed');
                 $($(this).attr('href')).collapse('toggle');
                 var state = thisItemCollapsed ? 0 : 1;
                 setLastCollapsedCategory($(this).data('cattype'), $(this).data('catid'), state);
-                writeElementsInTreeParamsToStorage()
+                writeElementsInTreeParamsToStorage();
               }
             }
           }
         }).fail(function(xhr, ajaxOptions, thrownError) {
-          alert(thrownError + '\r\n' + xhr.statusText + '\r\n' + xhr.responseText)
+          alert(thrownError + '\r\n' + xhr.statusText + '\r\n' + xhr.responseText);
         })
       }
 

@@ -1,6 +1,6 @@
 <?php
-if(IN_MANAGER_MODE != 'true') {
-	die('<b>INCLUDE_ORDERING_ERROR</b><br /><br />Please use the MODX Content Manager instead of accessing this file directly.');
+if( ! defined('IN_MANAGER_MODE') || IN_MANAGER_MODE !== true) {
+	die('<b>INCLUDE_ORDERING_ERROR</b><br /><br />Please use the EVO Content Manager instead of accessing this file directly.');
 }
 
 unset($_SESSION['itemname']); // clear this, because it's only set for logging purposes
@@ -12,6 +12,8 @@ if($modx->hasPermission('settings') && (!isset($settings_version) || $settings_v
 
 // set placeholders
 $ph = $_lang;
+$_SESSION['nrtotalmessages'] = 0;
+$_SESSION['nrnewmessages'] = 0;
 
 // setup message info
 if($modx->hasPermission('messages')) {
@@ -26,7 +28,7 @@ if($modx->hasPermission('messages')) {
 	$nrnewmessages = $_SESSION['nrnewmessages'] > 0 ? '<span style="color:red;">' . $_SESSION['nrnewmessages'] . '</span>' : '0';
 	$welcome_messages = sprintf($_lang['welcome_messages'], $_SESSION['nrtotalmessages'], $nrnewmessages);
 	$msg[] = sprintf('<span class="comment">%s</span>', $welcome_messages);
-	$ph['MessageInfo'] = join("\n", $msg);
+	$ph['MessageInfo'] = implode("\n", $msg);
 }
 
 // setup icons
@@ -54,6 +56,28 @@ if($modx->hasPermission('help')) {
 	$icon = '<i class="[&icons_help_large&]" alt="[%help%]" /> </i>[%help%]';
 	$ph['HelpIcon'] = wrapIcon($icon, 9);
 }
+
+if($modx->hasPermission('new_document')) {
+	$icon = '<i class="[&icons_resource_large&]"></i>[%add_resource%]';
+	$ph['ResourceIcon'] = wrapIcon($icon, 4);
+	$icon = '<i class="[&icons_weblink_large&]"></i>[%add_weblink%]';
+	$ph['WeblinkIcon'] = wrapIcon($icon, 72);
+}
+if($modx->hasPermission('assets_images')) {
+	$icon = '<i class="[&icons_images_large&]"></i>[%images_management%]';
+	$ph['ImagesIcon'] = wrapIcon($icon, 72);
+}
+if($modx->hasPermission('assets_files')) {
+	$icon = '<i class="[&icons_files_large&]"></i>[%files_management%]';
+	$ph['FilesIcon'] = wrapIcon($icon, 72);
+}
+if($modx->hasPermission('change_password')) {
+	$icon = '<i class="[&icons_password_large&]"></i>[%change_password%]';
+	$ph['PasswordIcon'] = wrapIcon($icon, 28);
+}
+$icon = '<i class="[&icons_logout_large&]"></i>[%logout%]';
+$ph['LogoutIcon'] = wrapIcon($icon, 8);
+
 // do some config checks
 if(($modx->config['warning_visibility'] == 0 && $_SESSION['mgrRole'] == 1) || $modx->config['warning_visibility'] == 1) {
 	include_once(MODX_MANAGER_PATH . 'includes/config_check.inc.php');
@@ -82,9 +106,10 @@ if(isset($_SESSION['show_logout_reminder'])) {
 }
 
 // Check multiple sessions
-$where = sprintf("internalKey='%s'", $modx->db->escape($_SESSION['mgrInternalKey']));
-$rs = $modx->db->select('count(*) AS count', '[+prefix+]active_user_sessions', $where);
-$count = $modx->db->getValue($rs);
+//$where = sprintf("internalKey='%s'", $modx->db->escape($_SESSION['mgrInternalKey']));
+//$rs = $modx->db->select('count(*) AS count', '[+prefix+]active_user_sessions', $where);
+//$count = $modx->db->getValue($rs);
+/*
 if($count > 1) {
 	$ph['multiple_sessions_msg'] = $modx->parseText($_lang['multiple_sessions_msg'], array(
 		'username' => $_SESSION['mgrShortname'],
@@ -93,7 +118,8 @@ if($count > 1) {
 	$ph['show_multiple_sessions'] = 'block';
 } else {
 	$ph['show_multiple_sessions'] = 'none';
-}
+}*/
+$ph['show_multiple_sessions'] = 'none';
 
 $ph['RecentInfo'] = getRecentInfo();
 
@@ -235,59 +261,55 @@ if(is_array($evtOut)) {
 $widgets['welcome'] = array(
 	'menuindex' => '10',
 	'id' => 'welcome',
-	'cols' => 'col-sm-6',
+	'cols' => 'col-lg-6',
 	'icon' => 'fa-home',
 	'title' => '[%welcome_title%]',
 	'body' => '
 				<div class="wm_buttons card-body"> 
-					<!--@IF:[[#hasPermission?key=new_user]] OR [[#hasPermission?key=edit_user]]--> 
+					<!--@IF:[[#hasPermission?key=new_document]]--> 
 					<span class="wm_button">
-						<a target="main" href="index.php?a=75">
-							<i class="[&icons_security_large&]" title="[%user_management_title%]"></i>
-							<span>[%user_management_title%]</span>
+						<a target="main" href="index.php?a=4">
+							<i class="[&icons_resource_large&]"></i>
+							<span>[%add_resource%]</span>
+						</a>
+					</span> 
+					<span class="wm_button">
+						<a target="main" href="index.php?a=72">
+							<i class="[&icons_weblink_large&]"></i>
+							<span>[%add_weblink%]</span>
 						</a>
 					</span> 
 					<!--@ENDIF--> 
-					<!--@IF:[[#hasPermission?key=new_web_user]] OR [[#hasPermission?key=edit_web_user]]--> 
+					<!--@IF:[[#hasPermission?key=assets_images]]--> 
 					<span class="wm_button">
-						<a target="main" href="index.php?a=99">
-							<i class="[&icons_webusers_large&]" title="[%web_user_management_title%]"></i>
-							<span>[%web_user_management_title%]</span>
+						<a target="main" href="media/browser/mcpuk/browse.php?filemanager=media/browser/mcpuk/browse.php&type=images">
+							<i class="[&icons_images_large&]"></i>
+							<span>[%images_management%]</span>
+						</a>
+					</span> 
+					<!--@ENDIF-->
+					<!--@IF:[[#hasPermission?key=assets_files]]--> 
+					<span class="wm_button">
+						<a target="main" href="media/browser/mcpuk/browse.php?filemanager=media/browser/mcpuk/browse.php&type=files">
+							<i class="[&icons_files_large&]"></i>
+							<span>[%files_management%]</span>
+						</a>
+					</span> 
+					<!--@ENDIF-->
+					<!--@IF:[[#hasPermission?key=change_password]]--> 
+					<span class="wm_button">
+						<a target="main" href="index.php?a=28">
+							<i class="[&icons_password_large&]"></i>
+							<span>[%change_password%]</span>
 						</a>
 					</span> 
 					<!--@ENDIF--> 
-					<!--@IF:[[#hasPermission?key=new_module]] OR [[#hasPermission?key=edit_module]]--> 
 					<span class="wm_button">
-						<a target="main" href="index.php?a=106">
-							<i class="[&icons_modules_large&]" title="[%manage_modules%]"></i>
-							<span>[%modules%]</span>
+						<a target="_top" href="index.php?a=8">
+							<i class="[&icons_logout_large&]"></i>
+							<span>[%logout%]</span>
 						</a>
 					</span> 
-					<!--@ENDIF--> 
-					<!--@IF:[[#hasAnyPermission:is(1)]] --> 
-					<span class="wm_button">
-						<a target="main" href="index.php?a=76">
-							<i class="[&icons_resources_large&]" title="[%element_management%]"></i>
-							<span>[%elements%]</span>
-						</a>
-					</span> 
-					<!--@ENDIF--> 
-					<!--@IF:[[#hasPermission?key=bk_manager]]--> 
-					<span class="wm_button">
-						<a target="main" href="index.php?a=93">
-							<i class="[&icons_backup_large&]" title="[%bk_manager%]"></i>
-							<span>[%backup%]</span>
-						</a>
-					</span> 
-					<!--@ENDIF--> 
-					<!--@IF:[[#hasPermission?key=help]] OR [[#hasPermission?key=edit_module]]--> 
-					<span class="wm_button">
-						<a target="main" href="index.php?a=9">
-							<i class="[&icons_help_large&]" title="[%help%]"></i>
-							<span>[%help%]</span>
-						</a>
-					</span> 
-					<!--@ENDIF--> 
 				</div>
 				<div class="userprofiletable card-body">
 					<table>
@@ -316,16 +338,16 @@ $widgets['welcome'] = array(
 					</table>
 				</div>
 		',
-	'hide'=>'0'	
+	'hide'=>'0'
 );
 $widgets['onlineinfo'] = array(
 	'menuindex' => '20',
 	'id' => 'onlineinfo',
-	'cols' => 'col-sm-6',
+	'cols' => 'col-lg-6',
 	'icon' => 'fa-user',
 	'title' => '[%onlineusers_title%]',
 	'body' => '<div class="userstable">[+OnlineInfo+]</div>',
-	'hide'=>'0'	
+	'hide'=>'0'
 );
 $widgets['recentinfo'] = array(
 	'menuindex' => '30',
@@ -334,7 +356,7 @@ $widgets['recentinfo'] = array(
 	'icon' => 'fa-pencil-square-o',
 	'title' => '[%activity_title%]',
 	'body' => '<div class="widget-stage">[+RecentInfo+]</div>',
-	'hide'=>'0'	
+	'hide'=>'0'
 );
 if ($modx->config['rss_url_news']) {
     $widgets['news'] = array(
@@ -441,7 +463,7 @@ echo $content;
 function getTplWidget() { // recent document info
 	return '
 		<div class="[+cols+]" id="[+id+]">
-			<div class="card"[+bodyAttr+]>
+			<div class="card"[+cardAttr+]>
 				<div class="card-header"[+headAttr+]> <i class="fa [+icon+]"></i> [+title+] </div>
 				<div class="card-block"[+bodyAttr+]> [+body+] </div>
 			</div>
@@ -557,7 +579,7 @@ function getRecentInfoList() {
 
 		$output[] = $modx->parseText($tpl, $ph);
 	}
-	return join("\n", $output);
+	return implode("\n", $output);
 }
 
 function getRecentInfoRowTpl() {
@@ -575,7 +597,7 @@ function getRecentInfoRowTpl() {
 									<ul>
 										<li><b>[%long_title%]</b>: [+longtitle+]</li>
 										<li><b>[%description%]</b>: [+description+]</li>
-										<li><b>[%resource_summary%]</b>: [+longtitle+]</li>
+										<li><b>[%resource_summary%]</b>: [+introtext+]</li>
 										<li><b>[%type%]</b>: [+type:is(reference):then([%weblink%]):else([%resource%])+]</li>
 										<li><b>[%resource_alias%]</b>: [+alias+]</li>
 										<li><b>[%page_data_cacheable%]</b>: [+cacheable:is(1):then([%yes%]):else([%no%])+]</li>

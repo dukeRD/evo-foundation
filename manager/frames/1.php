@@ -1,6 +1,5 @@
 <?php
-
-if (IN_MANAGER_MODE != "true") {
+if( ! defined('IN_MANAGER_MODE') || IN_MANAGER_MODE !== true) {
     die("<b>INCLUDE_ORDERING_ERROR</b><br /><br />Please use the EVO Content Manager instead of accessing this file directly.");
 }
 header("X-XSS-Protection: 0");
@@ -46,8 +45,16 @@ if (!$MODX_widthSideBar) {
     $body_class .= 'sidebar-closed';
 }
 
-if (isset($_COOKIE['MODX_themeColor'])) {
-    $body_class .= ' ' . $_COOKIE['MODX_themeColor'];
+$theme_modes = array('', 'lightness', 'light', 'dark', 'darkness');
+if (!empty($theme_modes[$_COOKIE['MODX_themeMode']])) {
+    $body_class .= ' ' . $theme_modes[$_COOKIE['MODX_themeMode']];
+} elseif (!empty($theme_modes[$modx->config['manager_theme_mode']])) {
+    $body_class .= ' ' . $theme_modes[$modx->config['manager_theme_mode']];
+}
+
+$navbar_position = $modx->config['manager_menu_position'];
+if ($navbar_position == 'left') {
+    $body_class .= ' navbar-left navbar-left-icon-and-text';
 }
 
 if (isset($modx->pluginCache['ElementsInTree'])) {
@@ -100,6 +107,8 @@ if ($modx->config['manager_theme'] == 'default') {
     }
 }
 
+$modx->config['global_tabs'] = (int)($modx->config['global_tabs'] && ($user['role'] == 1 || $modx->hasPermission('edit_template') || $modx->hasPermission('edit_chunk') || $modx->hasPermission('edit_snippet') || $modx->hasPermission('edit_plugin')));
+
 ?>
 <!DOCTYPE html>
 <html <?= (isset($modx_textdir) && $modx_textdir ? 'dir="rtl" lang="' : 'lang="') . $mxla . '" xml:lang="' . $mxla . '"' ?>>
@@ -145,10 +154,12 @@ if ($modx->config['manager_theme'] == 'default') {
           site_start: <?= (int)$modx->config['site_start'] ?>,
           tree_page_click: <?=(!empty($modx->config['tree_page_click']) ? (int)$modx->config['tree_page_click'] : 27) ?>,
           theme: '<?= $modx->config['manager_theme'] ?>',
+          theme_mode: '<?= $modx->config['manager_theme_mode'] ?>',
           which_browser: '<?= $user['which_browser'] ?>',
           layout: <?= (int)$manager_layout ?>,
           textdir: '<?= $modx_textdir ?>',
-          global_tabs: <?= $modx->config['global_tabs'] && $user['role'] == 1 ? 1 : 0 ?>
+          global_tabs: <?= $modx->config['global_tabs'] ?>
+
         },
         lang: {
           already_deleted: "<?= $_lang['already_deleted'] ?>",
@@ -211,11 +222,17 @@ if ($modx->config['manager_theme'] == 'default') {
         plugins: {
           ElementsInTree: <?= isset($modx->pluginCache['ElementsInTree']) ? 1 : 0 ?>,
           EVOmodal: <?= isset($modx->pluginCache['EVO.modal']) ? 1 : 0 ?>
+
         },
-        extend: function(a, b) {
-          for (var c in a) {
-            a[c] = b[c];
+        extend: function() {
+          for (var i = 1; i < arguments.length; i++) {
+            for (var key in arguments[i]) {
+              if (arguments[i].hasOwnProperty(key)) {
+                arguments[0][key] = arguments[i][key];
+              }
+            }
           }
+          return arguments[0];
         },
         extended: function(a) {
           for (var b in a) {
@@ -246,7 +263,7 @@ if ($modx->config['manager_theme'] == 'default') {
     ?>
 </head>
 <body class="<?= $body_class ?>">
-<input type="hidden" name="sessToken" id="sessTokenInput" value="<?= md5(session_id()) ?>" />
+<input type="hidden" name="sessToken" id="sessTokenInput" value="<?= isset($_SESSION['mgrToken']) ? $_SESSION['mgrToken'] : '' ?>" />
 <div id="frameset">
     <div id="mainMenu" class="dropdown">
         <div class="container">
@@ -268,7 +285,7 @@ if ($modx->config['manager_theme'] == 'default') {
                         </li>
                         <?php if ($modx->config['show_newresource_btn'] != "0") { ?>
                             <?php if ($modx->hasPermission('new_document')) { ?>
-                                <li class="dropdown newresource">
+                                <li id="newresource" class="dropdown newresource">
                                     <a href="javascript:;" class="dropdown-toggle" onclick="return false;" title="<?= $_lang['add_resource'] ?>"><?= $_style['menu_new_resource'] ?></a>
                                     <ul class="dropdown-menu">
                                         <?php if ($modx->hasPermission('new_document')) { ?>
@@ -301,13 +318,48 @@ if ($modx->config['manager_theme'] == 'default') {
                                 </li>
                             <?php } ?>
                         <?php } ?>
-                        <li>
+                        <li id="preview">
                             <a href="../" target="_blank" title="<?= $_lang['preview'] ?>">
                                 <?= $_style['menu_preview_site'] ?>
                             </a>
                         </li>
+                        <li id="account" class="dropdown account">
+                            <a href="javascript:;" class="dropdown-toggle" onclick="return false;">
+                                <span class="username"><?= $user['username'] ?></span>
+                                <?php if ($user['photo']) { ?>
+                                    <span class="icon photo" style="background-image: url(<?= MODX_SITE_URL . $user['photo'] ?>);"></span>
+                                <?php } else { ?>
+                                    <span class="icon"><?= $_style['menu_user'] ?></span>
+                                <?php } ?>
+                                <i id="msgCounter"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <?php if ($modx->hasPermission('messages')): ?>
+                                    <li id="newMail"></li>
+                                <?php endif; ?>
+                                <?php if ($modx->hasPermission('change_password')) { ?>
+                                    <li>
+                                        <a onclick="" href="index.php?a=28" target="main">
+                                            <?= $_style['page_change_password'] ?><?= $_lang['change_password'] ?>
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                                <li>
+                                    <a href="index.php?a=8">
+                                        <?= $_style['page_logout'] ?><?= $_lang['logout'] ?>
+                                    </a>
+                                </li>
+                                <?php
+                                $style = $modx->config['settings_version'] != $modx->getVersionData('version') ? 'style="color:#ffff8a;"' : '';
+                                $version = 'Evolution';
+                                ?>
+                                <?php
+                                echo sprintf('<li><span class="dropdown-item" title="%s &ndash; %s" %s>' . $version . ' %s</span></li>', $site_name, $modx->getVersionData('full_appname'), $style, $modx->config['settings_version']);
+                                ?>
+                            </ul>
+                        </li>
                         <?php if ($modx->hasPermission('settings') || $modx->hasPermission('view_eventlog') || $modx->hasPermission('logs') || $modx->hasPermission('help')) { ?>
-                            <li class="dropdown">
+                            <li id="system" class="dropdown">
                                 <a href="javascript:;" class="dropdown-toggle" title="<?= $_lang['system'] ?>" onclick="return false;"><?= $_style['menu_system'] ?></a>
                                 <ul class="dropdown-menu">
                                     <?php if ($modx->hasPermission('settings')) { ?>
@@ -353,41 +405,6 @@ if ($modx->config['manager_theme'] == 'default') {
                                 </ul>
                             </li>
                         <?php } ?>
-                        <li class="dropdown account">
-                            <a href="javascript:;" class="dropdown-toggle" onclick="return false;">
-                                <span class="username"><?= $user['username'] ?></span>
-                                <?php if ($user['photo']) { ?>
-                                    <span class="icon photo" style="background-image: url(<?= MODX_SITE_URL . $user['photo'] ?>);"></span>
-                                <?php } else { ?>
-                                    <span class="icon"><?= $_style['menu_user'] ?></span>
-                                <?php } ?>
-                                <i id="msgCounter"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <?php if ($modx->hasPermission('messages')): ?>
-                                    <li id="newMail"></li>
-                                <?php endif; ?>
-                                <?php if ($modx->hasPermission('change_password')) { ?>
-                                    <li>
-                                        <a onclick="" href="index.php?a=28" target="main">
-                                            <?= $_style['page_change_password'] ?><?= $_lang['change_password'] ?>
-                                        </a>
-                                    </li>
-                                <?php } ?>
-                                <li>
-                                    <a href="index.php?a=8">
-                                        <?= $_style['page_logout'] ?><?= $_lang['logout'] ?>
-                                    </a>
-                                </li>
-                                <?php
-                                $style = $modx->config['settings_version'] != $modx->getVersionData('version') ? 'style="color:#ffff8a;"' : '';
-                                $version = 'Evolution';
-                                ?>
-                                <?php
-                                echo sprintf('<li><span class="dropdown-item" title="%s &ndash; %s" %s>' . $version . ' %s</span></li>', $site_name, $modx->getVersionData('full_appname'), $style, $modx->config['settings_version']);
-                                ?>
-                            </ul>
-                        </li>
                         <?php if ($modx->config['show_fullscreen_btn'] != "0") { ?>
                             <li id="fullscreen">
                                 <a href="javascript:;" onclick="toggleFullScreen();" id="toggleFullScreen" title="<?= $_lang["toggle_fullscreen"] ?>">
@@ -404,16 +421,24 @@ if ($modx->config['manager_theme'] == 'default') {
         <?php include('tree.php') ?>
     </div>
     <div id="main">
-        <?php if ($modx->config['global_tabs'] && $user['role'] == 1): ?>
+        <?php if ($modx->config['global_tabs']): ?>
             <div class="tab-row-container evo-tab-row">
                 <div class="tab-row"><h2 id="evo-tab-home" class="tab selected" data-target="evo-tab-page-home"><i class="fa fa-home"></i></h2></div>
             </div>
-            <div id="evo-tab-page-home" class="evo-tab-page show">
+            <div id="evo-tab-page-home" class="evo-tab-page show iframe-scroller">
                 <iframe id="mainframe" src="index.php?a=<?= $initMainframeAction ?>" scrolling="auto" frameborder="0" onload="modx.main.onload(event);"></iframe>
             </div>
         <?php else: ?>
-            <iframe id="mainframe" name="main" src="index.php?a=<?= $initMainframeAction ?>" scrolling="auto" frameborder="0" onload="modx.main.onload(event);"></iframe>
+            <div class="iframe-scroller">
+                <iframe id="mainframe" name="main" src="index.php?a=<?= $initMainframeAction ?>" scrolling="auto" frameborder="0" onload="modx.main.onload(event);"></iframe>
+            </div>
         <?php endif; ?>
+        <script>
+            if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                document.getElementById('mainframe').setAttribute('scrolling', 'no');
+                document.getElementsByClassName("tabframes").setAttribute("scrolling", "no");
+            }
+        </script>
         <div id="mainloader"></div>
     </div>
     <div id="resizer"></div>
@@ -510,9 +535,15 @@ if ($modx->config['manager_theme'] == 'default') {
     </div>
 
     <?php
+    /**
+     * @param string $action
+     * @param string $img
+     * @param string $text
+     * @param bool $allowed
+     */
     function constructLink($action, $img, $text, $allowed)
     {
-        if ($allowed == 1) {
+        if ((bool)$allowed) {
             echo sprintf('<div class="menuLink" id="item%s" onclick="modx.tree.menuHandler(%s);">', $action, $action);
             echo sprintf('<i class="%s"></i> %s</div>', $img, $text);
         }
@@ -521,64 +552,64 @@ if ($modx->config['manager_theme'] == 'default') {
     ?>
 
     <script type="text/javascript">
-        <?php if($modx->hasPermission('edit_template') || $modx->hasPermission('edit_snippet') || $modx->hasPermission('edit_chunk') || $modx->hasPermission('edit_plugin')) { ?>
 
-        if (document.getElementById('treeMenu')) {
+      if (document.getElementById('treeMenu')) {
+          <?php if($modx->hasPermission('edit_template') || $modx->hasPermission('edit_snippet') || $modx->hasPermission('edit_chunk') || $modx->hasPermission('edit_plugin')) { ?>
 
-          document.getElementById('treeMenu_openelements').onclick = function(e) {
-            e.preventDefault();
-            if (modx.config.global_tabs && !e.shiftKey) {
-              modx.tabs({url: '<?= MODX_MANAGER_URL ?>index.php?a=76', title: '<?= $_lang["elements"] ?>'});
-            } else {
-              var randomNum = '<?= $_lang["elements"] ?>';
-              if (e.shiftKey) {
-                randomNum += ' #' + Math.floor((Math.random() * 999999) + 1);
-              }
-              modx.openWindow({
-                url: '<?= MODX_MANAGER_URL ?>index.php?a=76',
-                title: randomNum
-              });
+        document.getElementById('treeMenu_openelements').onclick = function(e) {
+          e.preventDefault();
+          if (modx.config.global_tabs && !e.shiftKey) {
+            modx.tabs({url: '<?= MODX_MANAGER_URL ?>index.php?a=76', title: '<?= $_lang["elements"] ?>'});
+          } else {
+            var randomNum = '<?= $_lang["elements"] ?>';
+            if (e.shiftKey) {
+              randomNum += ' #' + Math.floor((Math.random() * 999999) + 1);
             }
-          };
-            <?php } ?>
-            <?php if($use_browser && $modx->hasPermission('assets_images')) { ?>
+            modx.openWindow({
+              url: '<?= MODX_MANAGER_URL ?>index.php?a=76',
+              title: randomNum
+            });
+          }
+        };
+          <?php } ?>
+          <?php if($use_browser && $modx->hasPermission('assets_images')) { ?>
 
-          document.getElementById('treeMenu_openimages').onclick = function(e) {
-            e.preventDefault();
-            if (modx.config.global_tabs && !e.shiftKey) {
-              modx.tabs({url: '<?= MODX_MANAGER_URL ?>media/browser/<?= $which_browser ?>/browse.php?filemanager=media/browser/<?= $which_browser ?>/browse.php&type=images', title: '<?= $_lang["images_management"] ?>'});
-            } else {
-              var randomNum = '<?= $_lang["files_files"] ?>';
-              if (e.shiftKey) {
-                randomNum += ' #' + Math.floor((Math.random() * 999999) + 1);
-              }
-              modx.openWindow({
-                url: '<?= MODX_MANAGER_URL ?>media/browser/<?= $which_browser ?>/browse.php?&type=images',
-                title: randomNum
-              });
+        document.getElementById('treeMenu_openimages').onclick = function(e) {
+          e.preventDefault();
+          if (modx.config.global_tabs && !e.shiftKey) {
+            modx.tabs({url: '<?= MODX_MANAGER_URL . 'media/browser/' . $which_browser . '/browse.php?filemanager=media/browser/' . $which_browser . '/browse.php&type=images' ?>', title: '<?= $_lang["images_management"] ?>'});
+          } else {
+            var randomNum = '<?= $_lang["files_files"] ?>';
+            if (e.shiftKey) {
+              randomNum += ' #' + Math.floor((Math.random() * 999999) + 1);
             }
-          };
-            <?php } ?>
-            <?php if($use_browser && $modx->hasPermission('assets_files')) { ?>
+            modx.openWindow({
+              url: '<?= MODX_MANAGER_URL ?>media/browser/<?= $which_browser ?>/browse.php?&type=images',
+              title: randomNum
+            });
+          }
+        };
+          <?php } ?>
+          <?php if($use_browser && $modx->hasPermission('assets_files')) { ?>
 
-          document.getElementById('treeMenu_openfiles').onclick = function(e) {
-            e.preventDefault();
-            if (modx.config.global_tabs && !e.shiftKey) {
-              modx.tabs({url: '<?= MODX_MANAGER_URL ?>media/browser/<?= $which_browser ?>/browse.php?filemanager=media/browser/<?= $which_browser ?>/browse.php&type=files', title: '<?= $_lang["files_files"] ?>'});
-            } else {
-              var randomNum = '<?= $_lang["files_files"] ?>';
-              if (e.shiftKey) {
-                randomNum += ' #' + Math.floor((Math.random() * 999999) + 1);
-              }
-              modx.openWindow({
-                url: '<?= MODX_MANAGER_URL ?>media/browser/<?= $which_browser ?>/browse.php?&type=files',
-                title: randomNum
-              });
+        document.getElementById('treeMenu_openfiles').onclick = function(e) {
+          e.preventDefault();
+          if (modx.config.global_tabs && !e.shiftKey) {
+            modx.tabs({url: '<?= MODX_MANAGER_URL . 'media/browser/' . $which_browser . '/browse.php?filemanager=media/browser/' . $which_browser . '/browse.php&type=files' ?>', title: '<?= $_lang["files_files"] ?>'});
+          } else {
+            var randomNum = '<?= $_lang["files_files"] ?>';
+            if (e.shiftKey) {
+              randomNum += ' #' + Math.floor((Math.random() * 999999) + 1);
             }
-          };
-            <?php } ?>
+            modx.openWindow({
+              url: '<?= MODX_MANAGER_URL ?>media/browser/<?= $which_browser ?>/browse.php?&type=files',
+              title: randomNum
+            });
+          }
+        };
+          <?php } ?>
 
-        }
+      }
 
     </script>
     <?php if ($modx->config['show_fullscreen_btn'] != "0") { ?>

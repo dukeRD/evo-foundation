@@ -1,6 +1,6 @@
 <?php
-if(IN_MANAGER_MODE != "true") {
-	die("<b>INCLUDE_ORDERING_ERROR</b><br /><br />Please use the MODX Content Manager instead of accessing this file directly.");
+if( ! defined('IN_MANAGER_MODE') || IN_MANAGER_MODE !== true) {
+	die("<b>INCLUDE_ORDERING_ERROR</b><br /><br />Please use the EVO Content Manager instead of accessing this file directly.");
 }
 
 switch($modx->manager->action) {
@@ -18,7 +18,7 @@ switch($modx->manager->action) {
 		$modx->webAlertAndQuit($_lang["error_no_privileges"]);
 }
 
-$user = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
+$user = isset($_REQUEST['id']) ? (int)$_REQUEST['id'] : 0;
 
 // check to see the snippet editor isn't locked
 $rs = $modx->db->select('username', $modx->getFullTableName('active_users'), "action=12 AND id='{$user}' AND internalKey!='" . $modx->getLoginUserID() . "'");
@@ -551,6 +551,30 @@ if($which_browser == 'default') {
 						<td>&nbsp;</td>
 						<td class='comment'><?php echo $_lang["manager_theme_message"] ?></td>
 					</tr>
+
+					<tr>
+			            <td nowrap class="warning"><?= $_lang['manager_theme_mode'] ?><br>
+			                <small>[(manager_theme_mode)]</small>
+			            </td>
+			            <td>
+							<label><input type="radio" name="manager_theme_mode" value="" <?= $manager_theme_mode == '' ? 'checked="checked"' : "" ?> />
+			                    <?= $_lang['option_default'] ?></label>
+			                <br />
+
+			                <label><input type="radio" name="manager_theme_mode" value="1" <?= $manager_theme_mode == '1' ? 'checked="checked"' : "" ?> />
+			                    <?= $_lang['manager_theme_mode1'] ?></label>
+			                <br />
+			                <label><input type="radio" name="manager_theme_mode" value="2" <?= $manager_theme_mode == '2' ? 'checked="checked"' : "" ?> />
+			                    <?= $_lang['manager_theme_mode2'] ?></label>
+			                <br />
+			                <label><input type="radio" name="manager_theme_mode" value="3" <?= $manager_theme_mode == '3' ? 'checked="checked"' : "" ?> />
+			                    <?= $_lang['manager_theme_mode3'] ?></label>
+			                <br />
+			                <label><input type="radio" name="manager_theme_mode" value="4" <?= ($manager_theme_mode == '4') ? 'checked="checked"' : "" ?> />
+			                    <?= $_lang['manager_theme_mode4'] ?></label>
+			            </td>
+			        </tr>
+
 					<tr>
 						<th><?php echo $_lang["which_browser_title"] ?></th>
 						<td><select name="which_browser" class="inputBox" onChange="documentDirty=true;">
