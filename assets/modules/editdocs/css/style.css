@@ -1,0 +1,137 @@
+body {
+    min-height: 500px;
+}
+
+#selfil {
+    visibility: hidden;
+}
+
+.sumosize {
+    width:250px;
+    float: left;
+    margin: 0 20px 0 0;
+}
+
+.tab-row .tab a {
+    text-decoration: none;
+    color: #333;
+}
+.tab-page {
+    min-height: 500px;
+}
+
+.clear {
+    clear: both;
+}
+
+.subbat {
+    float: left;
+    padding: 18px 0 0 0;
+}
+
+
+.mess {
+    float: right;
+    min-width: 200px;
+}
+.warning {
+    position: fixed;
+    top: 10px;
+    right: 100px;
+    z-index: 200;
+    /*padding: 10px;
+    background: #E3FCF6;
+    box-shadow: 0 0 10px 1px #999;*/
+}
+
+.error {
+    color: #c00;
+    font-weight: bold;
+    background: #E3FCF6;
+}
+
+.parf {
+    float: left;
+    margin: 0 20px 0 0;
+}
+
+.tabres {
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+.tabres tr td {
+    padding: 3px;
+    border: 1px solid #eee;
+}
+
+.tabres tr td input {
+    width: 100%;
+}
+
+.tabres tr:nth-child(1) td {
+   font-weight: bold;
+    background: #ddd;
+    font-size: 15px;
+}
+
+.alert-ok {
+    padding: 10px;
+    background: #E3FCF6;
+    margin: 10px 0;
+}
+
+.alert-er {
+    padding: 10px;
+    background: #FFE9E6;
+}
+
+.loading {
+    padding: 10px;
+    font-size: 15px;
+    color: #888;
+    text-align: center;
+    background: #E3FCF6;
+}
+
+.pagination {
+    text-align: center;
+}
+
+.page {
+    padding: 4px 6px;
+    background: #999;
+    color: #fff;
+    margin: 0 1px 0 1px;
+    cursor: pointer;
+}
+b.current {
+    padding: 3px 5px;
+}
+h2.tab a {
+    padding: 11px 15px !important;
+    /*border: 1px solid red;*/
+}
+
+.sending {
+    display: none;
+}
+
+.tarea {
+    height: 35px;
+    resize: vertical;
+    width: 99%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
