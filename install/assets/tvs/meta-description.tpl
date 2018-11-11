@@ -1,14 +1,18 @@
 /**
  * meta-description
  *
- * Содержимое мета-тэга <b>description</b>
+ * содержимое мета-тега description
  *
- * @category	tv
- * @internal	@modx_category SEO
- * @internal  @caption Description
- * @internal  @input_type textarea
- * @internal  @input_options
- * @internal  @input_default [*introtext*]
- * @internal	@output_widget
- * @internal  @template_assignments Home
+ * @category        tv
+ * @name            meta-description
+ * @internal        @caption Meta description
+ * @internal        @input_type textarea
+ * @internal        @input_options
+ * @internal        @input_default [*introtext*]
+ * @internal        @output_widget
+ * @internal        @output_widget_params
+ * @internal        @lock_tv 0
+ * @internal        @template_assignments Home
+ * @internal        @modx_category SEO
+ * @internal        @installset sample
  */
