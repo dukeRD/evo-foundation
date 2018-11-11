@@ -1,11 +1,10 @@
-/**
-* header
-*
-* верхняя панель с навигацией
-*
-* @category chunk
-* @internal @modx_category Template
-*/
+ * head
+ *
+ * верхняя панель с навигацией
+ *
+ * @category    chunk
+ * @internal @modx_category Template
+ */
 <header class="header">
     <div class="header__wrapper">
         <div class="header__offcanvas">
