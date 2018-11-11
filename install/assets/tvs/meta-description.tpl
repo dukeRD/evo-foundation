@@ -1,11 +1,11 @@
 /**
  * meta-description
  *
- * содержимое мета-тега description
+ * Cодержимое мета-тега <b>description</b>
  *
  * @category        tv
  * @name            meta-description
- * @internal        @caption Meta description
+ * @internal        @caption Description
  * @internal        @input_type textarea
  * @internal        @input_options
  * @internal        @input_default [*introtext*]

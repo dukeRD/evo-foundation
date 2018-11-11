@@ -4,6 +4,7 @@
  * основное название страницы в тэге <b>title</b>
  *
  * @category	tv
+ * @name      meta-title
  * @internal	@modx_category SEO
  * @internal  @caption Title
  * @internal  @input_type text
