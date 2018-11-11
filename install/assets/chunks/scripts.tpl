@@ -1,7 +1,7 @@
 /**
  * scripts
  *
- *
+ * вызов скриптов перед закрытием body
  *
  * @category	chunk
  * @internal @modx_category Template
