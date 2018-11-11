@@ -10,5 +10,5 @@
  * @internal  @input_options
  * @internal  @input_default [*introtext*]
  * @internal	@output_widget
- * @internal  @template_assignments Home,Page,Страница
+ * @internal  @template_assignments Home
  */

@@ -11,5 +11,5 @@
  * @internal  @input_default [*pagetitle*]
  * @internal	@output_widget
  * @internal	@output_widget_params
- * @internal  @template_assignments Home,Page,Страница
+ * @internal  @template_assignments Home
  */
