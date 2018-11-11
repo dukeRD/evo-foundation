@@ -283,8 +283,7 @@ abstract class DocLister
         if ($ext = $this->getCFGDef('templateExtension')) {
             $DLTemplate->setTemplateExtension($ext);
         }
-        $DLTemplate->setTwigTemplateVars(array('DocLister' => $this));
-        $this->DLTemplate = $DLTemplate;
+        $this->DLTemplate = $DLTemplate->setTemplateData(array('DocLister' => $this));
     }
 
     /**
@@ -307,7 +306,7 @@ abstract class DocLister
                     break;
                 case ')':
                     $open--;
-                    if ($open == 0) {
+                    if ($open === 0) {
                         $res[] = $cur . ')';
                         $cur = '';
                     } else {
@@ -319,7 +318,7 @@ abstract class DocLister
                     $cur .= $e;
                     break;
                 case ';':
-                    if ($open == 0) {
+                    if ($open === 0) {
                         $res[] = $cur;
                         $cur = '';
                     } else {
@@ -331,11 +330,11 @@ abstract class DocLister
             }
         }
         $cur = preg_replace("/(\))$/u", '', $cur);
-        if ($cur != '') {
+        if ($cur !== '') {
             $res[] = $cur;
         }
 
-        return $res;
+        return array_reverse($res);
     }
 
     /**
@@ -964,8 +963,8 @@ abstract class DocLister
             2,
             array('html', null)
         );
-
-        $out = $this->DLTemplate->parseChunk($name, $data, $parseDocumentSource);
+        $disablePHx = $this->getCFGDef('disablePHx', 0);
+        $out = $this->DLTemplate->parseChunk($name, $data, $parseDocumentSource, (bool)$disablePHx);
         $out = $this->parseLang($out);
         if (empty($out)) {
             $this->debug->debug("Empty chunk: " . $this->debug->dumpData($name), '', 2);
@@ -1001,7 +1000,8 @@ abstract class DocLister
     {
         $out = $data;
         $docs = count($this->_docs) - $this->skippedDocs;
-        if ((($this->getCFGDef("noneWrapOuter", "1") && $docs == 0) || $docs > 0) && !empty($this->ownerTPL)) {
+        $wrap = $this->getCFGDef('prepareWrap');
+        if ((($this->getCFGDef("noneWrapOuter", "1") && $docs == 0) || $docs > 0) && !empty($this->ownerTPL) || !empty($wrap)) {
             $this->debug->debug("", "renderWrapTPL", 2);
             $parse = true;
             $plh = array($this->getCFGDef("sysKey", "dl") . ".wrap" => $data);
@@ -1018,7 +1018,7 @@ abstract class DocLister
                     'nameParam' => 'prepareWrap',
                     'return'    => 'placeholders'
                 ));
-                if (is_bool($params) && $params === false) {
+                if ($params === false) {
                     $out = $data;
                     $parse = false;
                 }
@@ -1647,10 +1647,19 @@ abstract class DocLister
                 $logic_op_found = true;
                 $subfilters = mb_substr($filter_string, strlen($op) + 1, mb_strlen($filter_string, "UTF-8"), "UTF-8");
                 $subfilters = $this->smartSplit($subfilters);
-                foreach ($subfilters as $subfilter) {
-                    $subfilter = $this->getFilters(trim($subfilter));
+                $lastFilter = '';
+                foreach ($subfilters as $filter) {
+                    /**
+                     * С правой стороны не выполняется trim, т.к. там находятся значения. А они могу быть чувствительны к пробелам
+                     */
+                    $subfilter = $this->getFilters(ltrim($filter) . $lastFilter);
                     if (!$subfilter) {
-                        continue;
+                        $lastFilter = explode(';', $filter, 2);
+                        $subfilter = isset($lastFilter[1]) ? $this->getFilters($lastFilter[1]) : '';
+                        $lastFilter = $lastFilter[0];
+                        if (!$subfilter) {
+                            continue;
+                        }
                     }
                     if ($subfilter['join']) {
                         $joins[] = $subfilter['join'];
@@ -1659,8 +1668,8 @@ abstract class DocLister
                         $wheres[] = $subfilter['where'];
                     }
                 }
-                $output['join'] = !empty($joins) ? implode(' ', $joins) : '';
-                $output['where'] = !empty($wheres) ? '(' . implode($sql, $wheres) . ')' : '';
+                $output['join'] = !empty($joins) ? implode(' ', array_reverse($joins)) : '';
+                $output['where'] = !empty($wheres) ? '(' . implode($sql, array_reverse($wheres)) . ')' : '';
             }
         }
 
@@ -1671,7 +1680,8 @@ abstract class DocLister
                 $output = false;
             } else {
                 $output['join'] = $filter->get_join();
-                $output['where'] = stripslashes($filter->get_where());
+                $output['where'] = $filter->get_where();
+
             }
         }
         $this->debug->debug('getFilter');
