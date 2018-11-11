@@ -9,13 +9,20 @@
  */
 
 
+
 //image
 $thumbOptions = $_DocLister->getCFGDef('thumbOptions');
+$data['image'] = $data['tv.image'];
 $data['tv.image'] = $modx->runSnippet('phpthumb', Array(
 	'input'  => $data['tv.image'] ,
 	'options'=> $thumbOptions
 ));
 
-	
-//output	
+$data['st_thumbUrl'] = $modx->runSnippet('phpthumb', Array(
+	'input'  => $data['st_thumbUrl'],
+	'options'=> $thumbOptions
+));
+
+
+//output
 	return $data;

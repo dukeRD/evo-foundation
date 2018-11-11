@@ -12,25 +12,25 @@
 
     <div class="form-group [+name.errorClass+] [+name.requiredClass+]">
         <label for="name">Ваше имя: </label>
-        <input name="name" type="text" value="[+name.value+]">
+        <input class="form-control" name="name" type="text" value="[+name.value+]">
         <div>[+name.error+]</div>
     </div>
 
     <div class="form-group [+email.errorClass+] [+email.requiredClass+]">
         <label for="email">Email:</label>
-        <input name="email" type="email" value="[+email.value+]">
+        <input class="form-control" name="email" type="email" value="[+email.value+]">
         <div>[+email.error+]</div>
     </div>
 
     <div class="form-group [+phone.errorClass+] [+phone.requiredClass+]">
         <label for="phone">Телефон:</label>
-        <input name="phone" type="tel" value="[+phone.value+]">
+        <input class="form-control" name="phone" type="tel" value="[+phone.value+]">
         <div>[+phone.error+]</div>
     </div>
 
     <div class="form-group [+message.errorClass+] [+message.requiredClass+]">
         <label    for="message">Сообщение:</label>
-        <textarea name="message">[+message.value+]</textarea>
+        <textarea class="form-control" name="message">[+message.value+]</textarea>
         <div>[+message.error+]</div>
     </div>
 

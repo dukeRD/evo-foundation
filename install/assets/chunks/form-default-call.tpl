@@ -8,6 +8,6 @@
  */
 [!FormLister?
 &formid=`defaultForm`
-&to=`[(cfg_email)]`
+&to=``
 &config=`default`
 !]
