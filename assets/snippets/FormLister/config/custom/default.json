@@ -1,11 +1,21 @@
 {
-	"subject":"Новое письмо",
-	"formTpl":"form-default-template",
-	"reportTpl":"form-default-report",
-	"errorClass": "is-invalid",
-	"requiredClass": "is-required",
-  "successTpl":"@CODE: <div class=\"form-success\"> <h3>Спасибо!</h3> <p>ваше письмо успешно отправлено.</p> </div>",
-  "messagesOuterTpl": "@CODE: [+messages+]",
-  "errorTpl": "@CODE: [+message+]",
-  "rules":"{\"name\":{\"required\":\"Обязательно введите имя\"}, \"phone\":{\"required\":\"Обязательно введите номер телефона\", \"phone\":\"Введите номер правильно\"}, \"email\":{\"email\":\"Введите адрес правильно\"}, \"message\":{\"required\":\"Обязательно введите сообщение\", \"minLength\":{\"params\":10, \"message\":\"Сообщение должно быть не менее 10 символов\"} } }"
+	"subject"             : "Новое письмо",
+
+	"protectSubmit"       : "0",
+	"submitLimit"         : "0",
+
+	"parseDocumentSource" : "1",
+	"rewriteUrls"         : "1",
+
+	"formTpl"             : "form-default-template",
+	"reportTpl"           : "form-default-report",
+
+	"errorClass"          : "is-invalid",
+	"requiredClass"       : "is-required",
+  "messagesOuterTpl"    : "@CODE: [+messages+]",
+  "errorTpl"            : "@CODE: [+message+]",
+
+
+  "successTpl"          : "@CODE: <div class=\"form-success\"> <h3>Спасибо!</h3> <p>ваше письмо успешно отправлено.</p> </div>",
+  "rules"               : "{\"name\":{\"required\":\"Обязательно введите имя\"}, \"phone\":{\"required\":\"Обязательно введите номер телефона\", \"phone\":\"Введите номер правильно\"}, \"email\":{\"email\":\"Введите адрес правильно\"}, \"message\":{\"required\":\"Обязательно введите сообщение\", \"minLength\":{\"params\":10, \"message\":\"Сообщение должно быть не менее 10 символов\"} } }"
 }

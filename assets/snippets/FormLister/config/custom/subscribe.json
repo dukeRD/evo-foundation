@@ -1,0 +1,18 @@
+{
+	"subject"             : "Новая подписка на новости",
+
+	"parseDocumentSource" : "1",
+	"rewriteUrls"         : "1",
+
+	"formTpl"             : "form-subscribe-template",
+	"reportTpl"           : "form-subscribe-report",
+
+	"errorClass"          : "is-invalid",
+	"requiredClass"       : "is-required",
+  "messagesOuterTpl"    : "@CODE: [+messages+]",
+  "errorTpl"            : "@CODE: [+message+]",
+
+  "successTpl"          : "@CODE: <div class=\"form-success\"><h3>Спасибо!</h3><p>Вы успешно подписаны на новости отеля</p></div>",
+
+  "rules"               : "{\"name\":{\"required\":\"Обязательно введите имя\"}, \"email\":{\"email\":\"Введите адрес правильно\"}}"
+}

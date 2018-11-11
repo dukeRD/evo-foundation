@@ -1,0 +1,22 @@
+{
+	"subject"             : "Заявка на бронирование номера",
+
+	"parseDocumentSource" : "1",
+
+
+	"formTpl"             : "form-room-template",
+	"reportTpl"           : "form-room-report",
+
+	"prepare"             : "form-room-prepare",
+	"prepareProcess"      : "form-room-prepareProcess",
+
+
+	"errorClass"          : "is-invalid",
+	"requiredClass"       : "is-required",
+  "messagesOuterTpl"    : "@CODE: [+messages+]",
+  "errorTpl"            : "@CODE: [+message+]",
+
+  "successTpl"          : "@CODE: <div class=\"form-success\"><h3>Спасибо!</h3><p>ваша заявка успешно отправлена.</p></div>",
+
+  "rules"               : "{\"name\":{\"required\":\"Обязательно введите имя\"}, \"phone\":{\"required\":\"Обязательно введите номер телефона\", \"phone\":\"Введите номер правильно\"}, \"email\":{\"email\":\"Введите адрес правильно\"}}"
+}

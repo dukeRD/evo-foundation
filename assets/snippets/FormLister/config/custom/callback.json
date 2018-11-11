@@ -1,0 +1,20 @@
+{
+	"subject"             : "Заявка на обратный звонок",
+
+
+	"parseDocumentSource" : "1",
+	"rewriteUrls"         : "1",
+
+	"formTpl"             : "form-callback-template",
+	"reportTpl"           : "form-callback-report",
+
+	"errorClass"          : "is-invalid",
+	"requiredClass"       : "is-required",
+  "messagesOuterTpl"    : "@CODE: [+messages+]",
+  "errorTpl"            : "@CODE: [+message+]",
+
+  "successTpl"          : "@CODE: <div class=\"form-success\"><h3>Спасибо!</h3><p>Заявка на обратный звонок принята</p></div>",
+
+  "rules"               : "{\"name\":{\"required\":\"Обязательно введите имя\"}, \"phone\":{\"required\":\"Обязательно введите номер телефона\", \"phone\":\"Введите номер правильно\"}}"
+
+}
