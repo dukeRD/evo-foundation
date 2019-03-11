@@ -1188,6 +1188,7 @@ class DocumentParser
         if (empty($_)) {
             return array();
         }
+        $tags = array();
         foreach ($_ as $v) {
             $tags[0][] = "{$left}{$v}{$right}";
             $tags[1][] = $v;
@@ -1254,11 +1255,13 @@ class DocumentParser
                 $rc++;
                 if ($lc === $rc) {
                     // #1200 Enable modifiers in Wayfinder - add nested placeholders to $tags like for $fetch = "phx:input=`[+wf.linktext+]`:test"
-                    if (strpos($fetch, $left) !== false) {
-                        $nested = $this->_getTagsFromContent($fetch, $left, $right);
-                        foreach ($nested as $tag) {
-                            if (!in_array($tag, $tags)) {
-                                $tags[] = $tag;
+                    if ($this->config['enable_filter'] == 1) {
+                        if (strpos($fetch, $left) !== false) {
+                            $nested = $this->_getTagsFromContent($fetch, $left, $right);
+                            foreach ($nested as $tag) {
+                                if (!in_array($tag, $tags)) {
+                                    $tags[] = $tag;
+                                }
                             }
                         }
                     }
@@ -4470,6 +4473,7 @@ class DocumentParser
      */
     public function getTpl($tpl)
     {
+        $command = '';
         $template = $tpl;
         if (preg_match("/^@([^:\s]+)[:\s]+(.+)$/s", trim($tpl), $match)) {
             $command = strtoupper($match[1]);
@@ -6809,6 +6813,108 @@ class DocumentParser
         $this->logEvent(0, $type, $msg, $title);
     }
 
+    /**
+     * @return DBAPI
+     */
+    public function getDatabase()
+    {
+        if ($this->db === null) {
+            $this->loadExtension('DBAPI');
+        }
+        return $this->db;
+    }
+
+    /**
+     * @return PHPCOMPAT
+     */
+    public function getPhpCompat()
+    {
+        if ($this->phpcompat === null) {
+            $this->loadExtension('PHPCOMPAT');
+        }
+        return $this->phpcompat;
+    }
+
+    /**
+     * @param bool $reload
+     * @return PasswordHash
+     */
+    public function getPasswordHash($reload = false)
+    {
+        if ($this->phpass === null || $reload === true) {
+            $this->loadExtension('phpass');
+        }
+        return $this->phpass;
+    }
+
+    /**
+     * @param bool $reload
+     * @return MakeTable
+     */
+    public function getMakeTable($reload = false)
+    {
+        if ($this->table === null || $reload === true) {
+            $this->loadExtension('makeTable');
+        }
+        return $this->table;
+    }
+
+    /**
+     * @param bool $reload
+     * @return EXPORT_SITE
+     */
+    public function getExportSite($reload = false)
+    {
+        if ($this->export === null || $reload === true) {
+            $this->loadExtension('makeTable');
+        }
+        return $this->export;
+    }
+
+    /**
+     * @return OldFunctions
+     */
+    public function getDeprecatedCore()
+    {
+        include_once(MODX_MANAGER_PATH . 'includes/extenders/deprecated.functions.inc.php');
+        return $this->old;
+    }
+
+    /**
+     * @param bool $reload
+     * @return ManagerAPI
+     */
+    public function getManagerApi($reload = false)
+    {
+        if ($this->manager === null || $reload === true) {
+            $this->loadExtension('ManagerAPI');
+        }
+        return $this->manager;
+    }
+
+    /**
+     * @param bool $reload
+     * @return MODIFIERS
+     */
+    public function getModifiers($reload = false)
+    {
+        if ($this->filter === null || $reload === true) {
+            $this->loadExtension('MODIFIERS');
+        }
+        return $this->filter;
+    }
+
+    /**
+     * @param bool $reload
+     * @return MODxMailer
+     */
+    public function getMail($reload = false)
+    {
+        if ($this->mail === null || $reload === true) {
+            $this->loadExtension('MODxMailer');
+        }
+        return $this->mail;
+    }
 }
 
 /**

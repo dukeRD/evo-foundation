@@ -1,25 +1,16 @@
 /**
  * footer
  *
- * содержимое футера
+ * подвал сайта
  *
  * @category	chunk
- * @internal @modx_category Template
+ * @internal @modx_category Templates
  */
-<footer class="footer">
-  <div  class="footer_wrapper">
-
-    <div class="footer__social">
-      <h4 class="footer__header">Мы в соцсетях:</h4>
-      <div class="social">
-        <a href="" class="social__link social__link--vk" target="_blank"  rel="noopener noreferrer"></a>
-        <a href="" class="social__link social__link--instagram"  target="_blank" rel="noopener noreferrer"></a>
-      </div>
-    </div>
-
-    <div class="footer__copyright">
-      &copy; [[yearCopyright]] [(site_name)]
-    </div>
-
-  </div>
+<footer>
+	<div class="footer-page">
+		<div class="copy">&copy; [[yearCopyright]]. Все права защищены.</div>
+		<div class="author">
+			Создание сайта - <a href="http://dukerd.ru/" target="_blank"  rel="noopener noreferrer">drd</a>
+		</div>
+	</div>
 </footer>

@@ -6,21 +6,9 @@
  * @category	plugins
  * @internal	@modx_category Forms
  * @license 	http://www.gnu.org/copyleft/gpl.html GNU Public License (GPL)
- * @internal @events 
+ * @internal @events
  * @internal @installset base
- * @internal @properties 
- */
-/**
- * evoAjax
- *
- * отправка форм ajax'ом 
- *
- * @category	plugins
- * @internal	@modx_category Forms
- * @license 	http://www.gnu.org/copyleft/gpl.html GNU Public License (GPL)
- * @internal @events 
- * @internal @installset base
- * @internal @properties {}
+ * @internal @properties
  */
 /*
 		ob_start();
@@ -30,7 +18,7 @@
 */
 $email = $modx->config['client_email'];
 
-switch($_GET['q']){     
+switch($_GET['q']){
 	case 'roomform':
 
 		echo $modx->runSnippet('FormLister', array(
@@ -42,7 +30,7 @@ switch($_GET['q']){
 		));
 		die();
 		break;
-		
+
 	case 'restaurantform':
 
 		echo $modx->runSnippet('FormLister', array(
@@ -52,7 +40,7 @@ switch($_GET['q']){
 		));
 		die();
 		break;
-				
+
 	case 'subscribeform':
 
 		echo $modx->runSnippet('FormLister', array(
@@ -62,7 +50,7 @@ switch($_GET['q']){
 		));
 		die();
 		break;
-		
+
 	case 'callbackform':
 
 		echo $modx->runSnippet('FormLister', array(
@@ -72,7 +60,7 @@ switch($_GET['q']){
 		));
 		die();
 		break;
-		
+
 	case 'offerform':
 
 		echo $modx->runSnippet('FormLister', array(
@@ -84,7 +72,7 @@ switch($_GET['q']){
 		));
 		die();
 		break;
-		
+
 	case 'vacancyform':
 
 		echo $modx->runSnippet('FormLister', array(
@@ -96,7 +84,7 @@ switch($_GET['q']){
 		));
 		die();
 		break;
-		
+
 	case 'partnerform':
 
 		echo $modx->runSnippet('FormLister', array(

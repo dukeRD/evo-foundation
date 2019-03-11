@@ -4,7 +4,7 @@
  * модальное окно с изменяемым контентом
  *
  * @category	chunk
- * @internal @modx_category ROOT Template
+ * @internal @modx_category bootstrap
  */
 <!-- Button trigger modal -->
 <button type="button" class="[+btn-open-class+]" data-toggle="modal" data-target="#[+id+]">

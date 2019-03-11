@@ -6,16 +6,23 @@
  * Базовый шаблон страницы
  * @internal	@modx_category
  */
-{{template-top}}
-
-	<h1 class="page-header">[[alterTitle]]</h1>
-
-	<section class="content">
+<!doctype html>
+<html class="no-js" lang="ru">
+	{{head}}
+	<body class="docid[*id*] parent[*parent*]">
+	{{nav}}
+	{{header}}
+	<main>
+		<section class="content">
 			[*content*]
-	</section>
-	[[if?
-	&is=`[*isfolder*]:=:1`
-	&then=`@TPL:folder-content`
-	]]
-
-{{template-bottom}}
+		</section>
+		[[if?
+		&is=`[*isfolder*]:=:1`
+		&then=`@TPL:folder-content`
+		]]
+		[[PageBuilder]]
+	</main>
+	{{footer}}
+	{{scripts}}
+	</body>
+</html>

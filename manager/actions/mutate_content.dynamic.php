@@ -543,7 +543,7 @@ require_once(MODX_MANAGER_PATH . 'includes/active_user_locks.inc.php');
 		/* ]]> */
 	</script>
 
-	<form name="mutate" id="mutate" class="content" method="post" enctype="multipart/form-data" action="index.php" onsubmit="documentDirty=false;">
+	<form name="mutate" method="post" action="index.php" enctype="multipart/form-data" id="mutate" class="content" onsubmit="documentDirty=false;">
 		<?php
 		// invoke OnDocFormPrerender event
 		$evtOut = $modx->invokeEvent('OnDocFormPrerender', array(
@@ -749,7 +749,7 @@ require_once(MODX_MANAGER_PATH . 'includes/active_user_locks.inc.php');
 
 												$selectedtext = ($row['id'] == $content['template']) ? ' selected="selected"' : '';
 
-												echo "\t\t\t\t\t" . '<option value="' . $row['id'] . '"' . $selectedtext . '>' . $row['templatename'] . "</option>\n";
+												echo "\t\t\t\t\t" . '<option value="' . $row['id'] . '"' . $selectedtext . '>' . $row['templatename'] . " (".$row['id'].")</option>\n";
 												$currentCategory = $thisCategory;
 											}
 											if($thisCategory != '') {
